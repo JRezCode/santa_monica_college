@@ -1,17 +1,17 @@
-# code_examples
+# Readme
   Example coding from my coursework at Santa Monica College, and while at Caltech's Jet Propulsion Laboratory, and in my own time.
   
-## Programming Languages:
+### Programming Languages:
 * Python
 * C
 * Java
 
 
-## Projects by Topic:
+### Projects by Topic:
 * Python List Comprehensions
 * Functional programs
 
-### Repository details
+## Repository details
 * Branches
   * main
   * coding_style_alt
