@@ -10,3 +10,8 @@
 ## Projects by Topic:
 * Python List Comprehensions
 * Functional programs
+
+### Repository details
+* Branches
+  * main
+  * coding_style_alt
