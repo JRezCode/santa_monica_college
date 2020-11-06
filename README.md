@@ -1,6 +1,6 @@
 # Readme
 Example projects from college coursework at Santa Monica College, internship at Caltech's Jet Propulsion Laboratory, and personal projects.
-**Programming languages include:** *Python*, *Java*, *JavaScript*, *C/C++*, *SQL*, *HTML/CSS*, *XML* and *YAML*. 
+**Programming languages:** *Python*, *Java*, *JavaScript*, *C/C++*, *SQL*, *HTML/CSS*, *XML* and *YAML*. 
 
 ## List of Python topics:
  * List Comprehensions
