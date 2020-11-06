@@ -1,15 +1,12 @@
 # Readme
-  Examples from college coursework at Santa Monica College, intern projects at Caltech's Jet Propulsion Laboratory, and projects of my own.
-###  The programming languages: 
-  * Python
-  * C
-  * Java
+Example projects from college coursework at Santa Monica College, internship at Caltech's Jet Propulsion Laboratory, and personal projects.
+**Programming languages include:** *Python*, *Java*, *JavaScript*, *C/C++*, *SQL*, *HTML/CSS*, *XML* and *YAML*. 
 
-###  The list of programming topics:
-  * Python List Comprehensions
-  * Functional programs
+## List of Python topics:
+ * List Comprehensions
+ * Functional programs.
 
 # Repository details
-* Branches
-  * main
-  * coding_style_alt
+## Branch Descriptions
+ * the main branch is home to the most final example project
+ * the coding_style_alt branch is an alternate branch for experimenting with coding style choices
