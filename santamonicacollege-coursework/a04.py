@@ -6,6 +6,8 @@ def diagonalX(matrix):
     return [[row[i] for row in matrix][i] for i in range(len(matrix))]
 
 def transposeX(matrix):
+    """This piece of code can be found here:
+    https://scipython.com/book/chapter-4-the-core-python-language-ii/examples/the-matrix-transpose-by-list-comprehension/"""
     return [[row[i] for row in matrix] for i in range(len(matrix))]
 
 def symmetricX(matrix):
