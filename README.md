@@ -1,2 +1,2 @@
 # Readme
-Example projects
+School assignments from SMC
