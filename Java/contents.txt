@@ -1,1 +1,0 @@
-The programs from three of my classes in the Java Programming language, including Data Structures in Java, Intro to Java, and Advanced Java with JavaFX.
