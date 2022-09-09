@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<!-- Name: Jonathan Reznik, 1654919
+	Assignment: A06 (Building content with Javascript)
+	Submission Date: 5-??-2019 -->
+
+<html>
+    <head>
+        <style type = "text/css">
+            img     {
+                width: 100%;
+                margin:.3em; 
+                padding: 4px;
+                background-color:cornsilk;
+            }
+            .body   {
+                font-family: arial, helvetica, sans-serif;
+            }
+            
+            .main_section   {
+                padding: 2px;
+                background-color: black;
+            }
+
+            .header 		{
+                background-color: darkgreen;
+                padding: 25px;
+            }
+
+            header h1 		{ 	
+                margin-top: 0px;
+                font-family: tahoma, helvetica, sans-serif;
+                color: magenta;
+                text-decoration: outline;
+                text-align: center;
+                box-shadow: 15px 15px 50px yellow;
+            }
+            .footer         { 	
+                border: 5px solid lightgreen; 
+                padding: .1em;
+            }
+            .verticalrow    {  
+                display: flex; 
+                flex-wrap: wrap;
+                flex: 16% 1; 
+            }
+            @media screen and (max-device-width: 800px)    {
+                .verticalrow {flex: 33.333%; }
+                .flexcontainer {}
+            }
+            @media screen and (max-device-width: 414px)    {
+                .verticalrow {flex: 100%; width: 100%;}
+                .flexcontainer {width: 100%; flex}
+            }
+        </style>
+        <script type="text/javascript">
+
+			//insert page load here
+			function createImageTiles() {				
+				var div = document.createElement("div");
+                div.setAttribute("class", "container");				
+				var css = "display: flex; flex-wrap:wrap; justify-content: space-around; align-content: center";
+				div.setAttribute("style", css);						
+				
+                for()
+                var img = document.createElement("img");				
+			}
+
+			var Images = ["1.jpg","2.jpg","3.jpg","4.jpg","5.jpg","6.jpg","7.jpg","8.jpg","9.jpg","10.jpg","11.jpg","12.jpg","13.jpg","14.jpg","15.jpg","16.jpg","17.jpg","18.jpg"];
+			var itemIndex=0;
+			var Location=[];            
+			
+
+            //start creates 2 buttons            
+            function start()
+            {
+                var button=document.getElementById("shuffButton");
+                button.addEventListener("click", shuffle, false);
+            }
+                       
+            function shuffle()
+            {
+				Location = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, -1, -1, -1, -1];		
+				const reducer = (accumulator, currentValue) => accumulator + currentValue;
+
+				//while loop to process all items in the array
+				while(Location.reduce(reducer)<0)
+                    {
+					//process the next image in imageArray
+					var rand = Math.floor(Math.random()*18);
+					if(Location[rand]==-1)
+					{
+						var imageGet = "images/assignment5/"+Images[rand]
+						var imageSet = document.getElementsByTagName("img")[itemIndex]
+						imageSet.setAttribute("src", imageGet);
+						Location[rand]=0;
+						itemIndex++;
+                    }
+                }
+                //document.write("The process is complete");
+            }
+
+            window.addEventListener("load", start, false);
+                
+        </script>
+    </head>
+    <body>
+        <!-- Note regarding img tags, id's are assigned a 'r' for rectangle or 'b' 
+				for box to help apply the correct image resolution to fit them evenly  -->
+        <header class="header"><h1>Assignment 5 Randomizing Picture Locations</h1>
+        <form action = "#">
+            <input id = "shuffButton" type="button" value="Go">
+        </form>
+        <p> Please click to completely shuffle without any duplicates.  NOTE: The image was taken from a license-free repository, and then using ImageMagick software on a Linux computer to create alternate copies.</p>
+        </header>
+        <section class="main_section">
+            <div class="flexcontainer" style = "display: flex; flex-wrap: wrap; justify-content: space-around; align-content: center;">                
+                <div class="verticalrow">
+                <img id="b1" src="images/assignment5/1.jpg">
+                <img id="b2" src="images/assignment5/2.jpg">
+                <img id="r1" src="images/assignment5/3.jpg"></div >
+                <div class="verticalrow">
+                <img id="r2" src="images/assignment5/4.jpg">
+                <img id="b3" src="images/assignment5/5.jpg">
+                <img id="b4" src="images/assignment5/6.jpg"></div>  
+                <div class="verticalrow">
+                <img id="b5" src="images/assignment5/7.jpg">
+                <img id="b6" src="images/assignment5/8.jpg">
+                <img id="r3" src="images/assignment5/9.jpg"></div>
+                <div class="verticalrow">
+                <img id="b7" src="images/assignment5/10.jpg">
+                <img id="r4" src="images/assignment5/11.jpg">
+                <img id="b8" src="images/assignment5/12.jpg"></div>
+                <div class="verticalrow">
+                <img id="r5" src="images/assignment5/13.jpg">
+                <img id="b9" src="images/assignment5/14.jpg">
+                <img id="b10" src="images/assignment5/15.jpg"></div>
+                <div class="verticalrow">
+                <img id="b11" src="images/assignment5/16.jpg">
+                <img id="b12" src="images/assignment5/17.jpg">
+                <img id="r6" src="images/assignment5/18.jpg"></div>
+            </div>
+        </section>
+        <footer class="footer">CS80 &copy;
+        </footer>
+    </body>
+</html>

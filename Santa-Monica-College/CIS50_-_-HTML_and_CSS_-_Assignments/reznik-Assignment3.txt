@@ -1,0 +1,27 @@
+Week 1 - Assignment 3
+
+The difference between virus and worm, as I understand it is a virus may corrupt or add executable files to the system, which is not the goal of a worm.  The worm is a special kind of virus that replicates itself instead of altering existing files just propogates and creates much unneeded new files on a system.
+
+ 
+
+Virus Name: JS.Facexworm
+
+Virus Type: Worm
+
+Description: Malicious Javascript injected into Chrome extension and spread through Facebook Messenger.
+
+Severity: Varies
+
+Date Discovered: May 02, 2018
+
+ 
+
+Virus Name: Remoc.368
+
+Virus Type: Virus
+
+Description: Executable virus inserting files and infecting others with .com extension
+
+Severity: ???
+
+Date Discovered: May 08, 2004

@@ -1,0 +1,66 @@
+<html>
+<head>
+	<script>
+  const MOUNTAINS = [
+    {name: "Kilimanjaro", height: 5895, place: "Tanzania"},
+    {name: "Everest", height: 8848, place: "Nepal"},
+    {name: "Mount Fuji", height: 3776, place: "Japan"},
+    {name: "Vaalserberg", height: 323, place: "Netherlands"},
+    {name: "Denali", height: 6168, place: "United States"},
+    {name: "Popocatepetl", height: 5465, place: "Mexico"},
+    {name: "Mont Blanc", height: 4808, place: "Italy/France"}
+  ];
+
+	//initialize some variables
+	var rowCount = MOUNTAINS.length;	
+	var colCount = colCount();				
+	
+	var tableHTMLStructure = "";	
+		
+	//create and insert table element
+	tableHTMLStructure+="<table id='Mountains'>";
+	//var table = document.createElement("table");	
+	
+				
+	//create first row with the number of columns
+	
+	//var newNode = document.createElement("tr");
+	//document.getElementsByName("table").appendChild(newNode);
+
+	//
+	tableHTMLStructure+="<tr id=\"header\">";
+/*	for(var i = 0; i<colCount; i++){
+		tableHTMLStructure+="<th id='category"+(i+2)+"'>";
+		var colheader = Object.getOwnProperty(MOUNTAINS[0])[i];
+		tableHTMLStructure+=colheader;
+		tableHTMLStructure+="</th>";
+		}
+		tableHTMLStructure+="</tr>";
+		//		var newCol = document.createElement("td");
+		//		document.body.getElementsByTagName("tr").appendChild(newCol);
+	}	
+
+	//create the remaining table rows
+	for(var i = 0; i <rowCount - 1; i++){
+		
+	  	var newRow = document.createElement("tr");
+/*
+	for(var i = 0; i<colCount; i++){
+		var newCol = document.createElement("td");
+		newCol.innerHTML="data here";
+
+*/	  	
+	document.writeln("a" + tableHTMLStructure);
+	//document.body.getElementById("mTable").appendChild(newRow);
+  }
+  
+  	function colCount() {
+	var i = 0;
+	for (element in MOUNTAINS[0])
+		i++;
+		return i;};
+</script>
+</head>
+<body>
+</body>
+</html>

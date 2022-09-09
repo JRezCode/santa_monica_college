@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<!-- Name: Jonathan Reznik, 1654919
+	Assignment: A04 (Javascript)
+	Submission Date: 4-19-2019 -->
+
+
+<html>
+    <head>
+        <style type = "text/css">
+		<!-- File is further commented throughout including script portion and html body -->
+            *    
+            img     {
+                width: 100%;
+                margin:.3em; 
+                padding: 4px;
+                background-color:cornsilk;
+            }
+            .body   {
+                font-family: arial, helvetica, sans-serif;
+            }
+            .main_section   {
+                padding: 2px;
+                background-color: black;
+            }
+            .header 		{
+                background-color: darkgreen;
+                padding: 25px;
+            }
+            header h1 		{ 	
+                margin-top: 0px;
+                font-family: tahoma, helvetica, sans-serif;
+                color: magenta;
+                text-decoration: outline;
+                text-align: center;
+                box-shadow: 15px 15px 50px yellow;
+            }
+            .footer         { 	
+                border: 5px solid lightgreen; 
+                padding: .1em;
+            }
+            .verticalrow    {   
+                flex-wrap: wrap;
+                flex: 16% 1; 
+            }
+            @media screen and (max-width: 800px)    {
+                .verticalrow {flex: 33.333%;}
+            }
+            @media screen and (max-width: 414px)    {
+                .verticalrow {flex: 100%;}
+            }
+        </style>
+        <script type="text/javascript">
+			/*Program Description
+            *The script makes use of the flexbox model for image manipulation.
+            *3 variables are used to select the locations of image placement
+            *for each click of the button.  However the image only fits in rectangle
+            *to preserve the aesthetic looks it is placed/replaced in only these
+            *rectangular shape elements.
+			*
+            *NOTE:  While random is being used to choose where images will go, 
+            *but due to the design this means that the action by user could require
+            *some amount of repetitive clicking to fill up the page with items.
+            *An expansion of this code might do some more state checking of the page
+            *and perhaps clear the image instead of placing over itself.  Also this
+            *could be turned into a "game" of chance as well with a counter tracking
+            *in a table how many attempts to fill all the rectangles with images. 
+            */
+           // var image1;     //A roughly rectangular image of chess 
+           // var image2;     //A roughly square/box image of brick wall
+           var eventCounter = 0;
+            
+            //start creates 2 buttons
+            function start()
+            {
+                var button=document.getElementById("shuffButton");
+                button.addEventListener("click", replace, false);
+                var button=document.getElementById("shuffButton2");
+                button.addEventListener("click", replace, false);
+                var button=document.getElementById("Reset");
+                button.addEventListener("click", reload, false);
+            }
+            
+            //reload is used by 1 of button
+            function reload()
+            {
+                location.reload();
+            }
+            
+            //replace chooses 3 random locations to setImage in
+            function replace()
+            {
+            	//for assignment for loop needed
+             //for (var i = 0; i < 18; i++)
+            	//{
+            	loc= Math.floor(Math.random()*18);
+					var imgNode = document.getElementsByTagName("img")[loc];
+            	if(imgNode.getAttribute("id")=="box")
+            	{
+            	var images=Math.floor(1+Math.random()*7);
+            	if(images==7){
+            		imgNode.setAttribute("src", "images/box7.png");
+				message = "Done with "+eventCounter+"number of changes processed to the page";
+				var newNode = document.createTextNode(message)
+				document.getElementById("Instructions").appendChild(newNode);
+            		//break;
+            		}
+ 					else
+						imgNode.setAttribute("src","images/box"+images+".jpg");
+				     }
+					else {
+            	var images=Math.floor(1+Math.random()*7);
+					imgNode.setAttribute("src","images/rect"+images+".jpg");
+					}
+					eventCounter++;
+//				}
+            }
+            
+            //the helper function of replace() tests for which image to place using getAttribute and
+            //setAttribute of the image tags
+/*            function setImage(image)
+            {
+                if(image.getAttribute("id").startsWith("r")){
+                    image.setAttribute("src", "images/chess.jpg");
+                }
+                else {
+                    image.setAttribute("src","images/brickbox.png");
+                }               
+            } */
+            window.addEventListener("load", start, false);
+        </script>
+    </head>
+    <body>
+        <!-- Note regarding img tags, id's are assigned a 'r' for rectangle or 'b' 
+				for box to help apply the correct image resolution to fit them evenly  -->
+        <header class="header"><h1>Assignment 4 Javascript</h1>
+        <form action = "#">
+            <input id = "shuffButton" type="button" value="Go">
+            <input id = "shuffButton2" type="button" value="Alt Go">
+            <input id = "Reset" type="button" value="Retry">
+        </form>
+        <p id="Instructions"> Please keep clicking to complete the puzzle (Either Go or Alt Go will work the same)</p>
+        </header>
+        <section class="main_section">
+            <div style = "display: flex; flex-wrap: wrap;">
+                <div class="verticalrow">
+                <img id="box" src="images/box1.jpg">
+                <img id="box" src="images/box2.jpg">
+                <img id="rect" src="images/rect2.jpg"></div>
+                <div class="verticalrow">
+                <img id="rect" src="images/rect3.jpg">
+                <img id="box" src="images/box4.jpg">
+                <img id="box" src="images/box6.jpg"></div>  
+                <div class="verticalrow">
+                <img id="box" src="images/box3.jpg">
+                <img id="box" src="images/box5.jpg">
+                <img id="rect" src="images/rect6.jpg"></div>
+                <div class="verticalrow">
+                <img id="box" src="images/box4.jpg">
+                <img id="rect" src="images/rect1.jpg">
+                <img id="box" src="images/box3.jpg"></div>
+                <div class="verticalrow">
+                <img id="rect" src="images/rect4.jpg">
+                <img id="box" src="images/box1.jpg">
+                <img id="box" src="images/box5.jpg"></div>
+                <div class="verticalrow">
+                <img id="box" src="images/box6.jpg">
+                <img id="box" src="images/box1.jpg">
+                <img id="rect" src="images/rect5.jpg"></div>
+            </div>
+        </section>
+        <footer class="footer">CS80 &copy;
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<!--
+Brendan Gross
+Assignment 4
+Submission Date: 4/19/19
+-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>BRENDAN GROSS ASSIGNMENT 4</title>
+    
+    <style type = "text/css">
+     * {
+  box-sizing: border-box;
+}
+img { 
+  width: 100%; 
+}
+.body {
+  margin: 1;
+  font-family: "Times New Roman", Times, serif;
+  }
+.main_section {
+  padding: 4px;
+}
+.header {
+  margin: 5;
+  text-align: center;
+  padding: 1px;
+  background-color: lightblue;
+  font-family: "Times New Roman", Times, serif;
+  color: white;
+}
+.footer {
+  margin: 5;
+  text-align: center;
+  padding: 1px;
+  background-color: lightblue;
+  font-family: "Times New Roman", Times, serif;
+  color: black;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  }
+.col {
+  flex: 16%;
+  max-width: 16%;
+  padding: 4px; 
+}
+@media only screen and (max-width: 800px) {
+  .col {
+    flex: 28%;
+    max-width: 28%;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .col {
+    flex: 100%;
+    max-width: 100%;
+  }
+}
+   </style>
+  <script type="text/javascript">
+    var Images = ["1.jpg","2.jpg","3.jpg","4.jpg","5.jpg","6.jpg","7.jpg","8.jpg","9.jpg","10.jpg","11.jpg","12.jpg","13.jpg","14.jpg","15.jpg","16.jpg","17.jpg","18.jpg"];
+    var itemIndex=0;
+    var Location=[];            
+
+          //start creates 2 buttons            
+          function start()
+          {
+              var button=document.getElementById("shuffButton");
+              button.addEventListener("click", shuffle, false);
+          }
+
+          //reload is used by 1 of button
+          function reload()
+          {
+      console.log("reloading");
+              location.reload();
+          }
+                      
+          //replace chooses 3 random locations to setImage in
+          function shuffle()
+          {
+      Location = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, -1, -1, -1, -1];		
+      //reinitialize the tracking object
+      
+      //while loop to process all items in the array
+      while(!checkFull())
+                  {
+        //process the next image in imageArray
+        var rand = Math.floor(Math.random()*18);
+        if(Location[rand]==-1)
+        {
+          document.getElementsByTagName("img").item(itemIndex).setAttribute("src", "images/assignment5/"+Images[rand].toString());
+          Location[rand]=0;
+          itemIndex++;
+        }
+        else
+          continue;
+          }
+          //document.write("The process is complete");
+                  }
+      
+      function checkFull()
+      {					
+        for(each in Location)
+        {
+          if(Location[each]==-1)
+            return false;
+          }
+          itemIndex=0;
+          return true;
+        }
+      
+              window.addEventListener("load", start, false);
+              
+      </script>
+  </head>
+
+<body>
+    
+    
+  <header class="header"><h1>A04 RESPONSIVE FLEXBOX LAYOUT</h1>
+    <form action = "#">
+      <input id = "shuffButton" type="button" value="Go">
+      <input id = "Reset" type="button" value="Reset">
+   </form>
+  </header>
+  
+
+    <div class="row"> 
+<div class="col">
+    <img id = "1" src = "1.jpg" alt = "blank image">
+    <img id = "2" src = "2.jpg" alt = "blank image">
+    <img id = "3" src = "3.jpg" alt = "blank image">
+ 
+  </div>
+ 
+<div class="col">
+    <img id = "4" src = "4.jpg" alt = "blank image">
+    <img id = "5" src = "5.jpg" alt = "blank image">
+    <img id = "6" src = "6.jpg" alt = "blank image">
+   
+  </div> 
+   
+<div class="col">
+    <img id = "7" src = "7.jpg" alt = "blank image">
+    <img id = "8" src = "8.jpg" alt = "blank image">
+    <img id = "9" src = "9.jpg" alt = "blank image">
+ 
+  </div>
+  
+<div class="col">
+    <img id = "10" src = "10.jpg" alt = "blank image">
+    <img id = "11" src = "11.jpg" alt = "blank image">
+    <img id = "12" src = "12.jpg" alt = "blank image">
+ 
+  </div>
+  
+  <div class="col">
+      <img id = "13" src = "13.jpg" alt = "blank image">
+      <img id = "14" src = "14.jpg" alt = "blank image">
+      <img id = "15" src = "15.jpg" alt = "blank image">
+   
+  </div> 
+   <div class="col">
+      <img id = "16" src = "16.jpg" alt = "blank image">
+      <img id = "17" src = "17.jpg" alt = "blank image">
+      <img id = "18" src = "18.jpg" alt = "blank image">
+  
+  </div>
+  </div>
+</section>
+
+<footer class="footer"><h3>CS 80 INTERNET PROGRAMMING &#169 2019</h3></footer>
+</body>
+</html>

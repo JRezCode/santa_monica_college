@@ -1,0 +1,13 @@
+Program 1
+Initialize or declare a, b, *c, and *d to be of type double
+Write function that will:
+	Multiply a and b and store in *c
+	Divide a by by and store in *d
+	(Function arguments are all 4, using both pass by value and by reference)
+	Display values for c and for d
+	
+
+Program 2
+
+	
+	

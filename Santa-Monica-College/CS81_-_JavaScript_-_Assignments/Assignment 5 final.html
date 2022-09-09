@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+<h1>Mountains</h1>
+
+<div id="mountains"></div>
+
+<script>
+  const MOUNTAINS = [
+    {name: "Kilimanjaro", height: 5895, place: "Tanzania"},
+    {name: "Everest", height: 8848, place: "Nepal"},
+    {name: "Mount Fuji", height: 3776, place: "Japan"},
+    {name: "Vaalserberg", height: 323, place: "Netherlands"},
+    {name: "Denali", height: 6168, place: "United States"},
+    {name: "Popocatepetl", height: 5465, place: "Mexico"},
+    {name: "Mont Blanc", height: 4808, place: "Italy/France"}
+  ];
+
+
+	//Extracting column names with helper function
+	var column = getPropertyNames();
+
+	function getPropertyNames() {
+		let colset = [];		
+		for(var item in MOUNTAINS[0]){
+			colset.push(item);			
+		}
+		return colset;
+	}
+
+	//Creates new table element, for final child append to document.body	
+	var table = document.createElement('table');
+	
+	//Creating some headers for the columns
+	var tr = document.createElement('tr');
+	for(var item in column){
+		var th = document.createElement('th');
+		th.appendChild(document.createTextNode(column[item]));
+		tr.appendChild(th);
+		}
+	table.appendChild(tr);
+
+	for(var i = 0, l = MOUNTAINS.length; i<l; i++) {
+			var tr = document.createElement('tr');
+		for (var j = 0, max=column.length; j < max; ++j) {			
+			var td = document.createElement('td');
+			cell = MOUNTAINS[i][column[j]];
+			td.appendChild(document.createTextNode(MOUNTAINS[i][column[j]] || ' ' ));			
+			tr.appendChild(td);
+		}
+		table.appendChild(tr);
+	}
+
+	document.body.appendChild(table);	
+	
+</script>
+</html>

@@ -1,0 +1,43 @@
+HTML/CSS Specs (Assignment 3)
+
+1. Two files A03.html and A03.css
+	a) Link to style sheet from html
+
+	b) Consider uses of inline css in addition as needed??
+
+2. HTML file - A03.html
+	elements:
+		a) header
+		<header class="header">
+			<h1>Sample CSS Flexbox (responsive design)</h1>
+		</header>
+
+		b) section - TBD
+
+
+		c) footer
+		<footer class="footer">
+			<h6>CS80 Internet Programming &copy 2019<h6>
+		</footer>
+
+
+		d) link to stylesheet
+			<link rel = "stylesheet" type = "text/css" href = "A03.css">
+
+
+3. CSS file - A03.css
+	selectors:	a) body, header, footer, and main_section
+				b) row: display = flex, and with "wrap" on
+				c) col
+					i. padding set
+					ii. flex percentage with @media rule for query and adjust
+						NOTE: screen sizes should be measured how?
+						
+						@media screen and (max-width: 480px)
+						{
+							body{ background-color: rgb(255,255,255);}
+						}
+
+4. Content for A03.html
+	3 images for each of the 6 columns (18 total images)
+	Use relative path in document and be sure to upload an images folder

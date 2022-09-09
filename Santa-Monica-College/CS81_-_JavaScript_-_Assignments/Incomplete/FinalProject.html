@@ -1,0 +1,314 @@
+<html>
+<head>
+ <meta charset = "utf-8">
+ <title>Event Handling using HTML5 Canvas</title>
+ <style rel="stylesheet"  type="text/css" href="FinalProject.css"></style>
+ <script>
+  var canvas = [];
+  canvas = Array.from(document.getElementsByTagName("canvas"))
+
+  function Init () {
+    var radio_small = document.getElementById ("S");
+    var radio_larger = document.getElementById ("L");
+    radio_small.addEventListener ("RadioStateChange", OnRadioStateChange, false);
+    radio_larger.addEventListener ("RadioStateChange", OnRadioStateChange, false);
+  }
+
+  function OnRadioStateChange (event) {
+    var radio = event.target;
+    if (radio.checked) {
+      alert ("The " + radio.value + " radio is selected.");
+      if(radio.value=="Larger")
+        canvas.forEach(function(c) { setCanvasSizeLarge(c) });
+      else if(radio.value=="Small")
+        canvas.forEach(function(c) { setCanvasSizeSmall(c) });
+    }
+    else {
+      alert ("The " + radio.value + " radio is unselected.");
+    }
+    canvas.forEach(function(draw) { canvas(draw)});
+  }
+
+  window.addEventListener("load",Init,false);
+
+
+
+</script>
+</head>
+
+<body>
+  <section>
+    <h3>Demo of various event listening and handling capabilities of the browser with JS</h3>
+  </section>
+  <form name="size" action="#">
+    <input id="L" type="radio" name="myradio" value="Larger">
+    <input id="S" type="radio" name="myradio" value="Small">
+  </form>
+  <p><strong>Instructions:</strong></p>
+  <p>Each of the HTML5 canvas elements are there in order to demonstrate a particular event handling
+    interaction within the canvas itself, or at times within the entire window.  For most of the canvas
+    elements it is necessary to "activate" them with a single-click which can be done either inside the canvas or using the focus button next to each one.  E.g. Each canvas is assigned a mouse hover event, and now hover use the 'X' key to shrink down back to
+  usual size.</p>
+  <div id="messages"></div>
+  <canvas class="windowed" id = "canvas1" tabindex="0"></canvas>
+  <canvas class="windowed" id = "canvas2" tabindex="1"></canvas>
+  <canvas class="windowed" id = "canvas4" tabindex="2"></canvas>
+  <canvas class="windowed" id = "canvas5" tabindex="3"></canvas>
+  <canvas class="windowed" id = "canvas6" tabindex="4"></canvas>
+  <canvas class="windowed" id = "canvas7" tabindex="5"></canvas>
+  <div id="buttons">
+    <button name="focus demo 1" onclick="canvas1.focus(); canvas2.style.display='none'; canvas1.style.display='block';"></button>
+    <button name="focus demo 2" onclick="canvas2.focus(); canvas1.style.display='none'; canvas2.style.display='block'"></button>
+    <button name="focus demo 3" onclick="removeCanvasThree()"></button>
+  </div>
+  <script>
+
+    const canvas1 = document.getElementById("canvas1");
+    const canvas2 = document.getElementById("canvas2");
+    // const canvas3 = document.getElementById("canvas3");
+    const canvas4 = document.getElementById("canvas4");
+    const canvas5 = document.getElementById("canvas5");
+
+
+    var ctx1 = canvas1.getContext("2d")
+    var ctx2 = canvas2.getContext("2d")
+    //var ctx3 = canvas3.getContext("2d")
+    var ctx4 = canvas4.getContext("2d")
+    var ctx5 = canvas5.getContext("2d")
+
+    drawcanvas(ctx1,"red","canvas1");
+    drawcanvas(ctx2,"blue","canvas2");
+    //drawcanvas(ctx3,"orange","canvas3");
+    drawcanvasLine(ctx4,"canvas4");
+    drawcanvasLine(ctx5,"canvas5");
+
+
+    function drawcanvas(ctx, color, name){
+      var grd = ctx.createRadialGradient(75, 50, 5, 90, 60, 100);
+      grd.addColorStop(0, color);
+      grd.addColorStop(1, "white");
+      ctx.fillStyle = grd;
+      ctx.fillRect(40, 90, 150, 100); 
+      ctx.font = "italic 24px serif";
+      ctx.fillText(name, 20, 50);
+      ctx.textBaseline = "center";
+    }
+
+    function drawcanvasLine(ctx,name){
+      ctx.moveTo(0, 0);
+      ctx.lineTo(document.documentElement.clientWidth, document.documentElement.innerHeight);
+      ctx.stroke();             
+      ctx.font = "italic 24px serif";
+      ctx.fillText(name, 20, 50);      
+    }
+
+    var button3 = document.getElementsByTagName("BUTTON")[2]
+    const canvasadd = document.createElement("canvas");
+    canvasadd.setAttribute("id", "canvas3")
+    document.body.insertBefore(canvasadd, button3.parentNode);
+    canvas3 = document.getElementById("canvas3")
+    var ctx3 = canvas3.getContext("2d");
+    drawcanvas(ctx3);
+
+
+    //setCanvasSizeLargest(ctx.canvas)
+    //setCanvasSizeSmall(ctx.canvas)
+    //setCanvasSizeLarge(ctx.canvas)
+    
+    //experimental feature to full screen -- consider setting to event listener F
+    function setCanvasSizeLargest(canvas) 
+    {
+        // canvas.classList.remove("windowed")
+        // canvas.classList.add("fullscreen");
+        // event.target ="fullscreen";
+        canvas.width=document.documentElement.clientWidth;
+        canvas.height=document.documentElement.clientHeight;
+      } 
+
+      function setCanvasSizeLarge(canvas) {
+        canvas.width=800;
+        canvas.height=450;
+      }
+
+      function setCanvasSizeSmall(canvas) {
+        canvas.width=302;
+        canvas.height=152;
+      }
+
+
+      //  = function(size) {
+      //   if(size=="Larger") {
+      //     canvas.forEach(function() {this.width = 800;
+      //       this.height = 450;})
+      //   }
+      //   else if(size=="Smaller"){
+      //     canvas.forEach(function() {this.width = 302;
+      //       this.height = 152;})
+      //   }
+      // }
+
+      var toggleView = function(canvas) {
+        if(canvas.style.display!="none")
+          canvas.style.display="none";
+        else
+          canvas.style.display="inline"
+      }
+
+      var searchCanvasFor
+      let canvasAll = document.getElementsByTagName("canvas");
+      for(var i = 0; i < canvasAll.length; i++) {
+        canvasAll[i].style.display="block";
+      }
+
+
+
+          //third canvas
+          function removeCanvasThree()
+          {
+            document.getElementById("canvas3").remove();
+            document.getElementsByTagName("BUTTON")[2].setAttribute("onclick","addCanvasThree()");
+          }
+
+          function addCanvasThree(canvas){
+            const c = document.createElement("canvas");
+            c.setAttribute("id", "canvas3")
+            buttons = document.getElementById("buttons");
+            document.body.insertBefore(c, buttons);
+            var canvas3 = document.getElementById("canvas3");
+            var ctx3 = canvas3.getContext("2d")
+            var grd3 = ctx3.createRadialGradient(75, 50, 5, 90, 60, 100);
+            grd3.addColorStop(0, "red");
+            grd3.addColorStop(1, "white");
+            ctx3.fillStyle = grd3;
+            ctx3.font = "italic 24px serif";
+            ctx3.fillText("3", 20, 50);
+            ctx3.textBaseline = "center";
+            document.getElementsByTagName("BUTTON")[2].setAttribute("onclick","removeCanvasThree()");
+          }
+
+
+
+          function onMouseOver(e) {
+          }
+      //   if(e.id==undefined)
+      //     e=e.target
+      //   message1 = document.createTextNode("This is demo number "+e.id.slice(6,));
+      //   if(document.getElementById("messages").firstChild!=null)
+      //     document.getElementById("messages").firstChild.remove();
+      //   document.getElementById("messages").appendChild(message1);
+      //   if(e.id=="canvas3"){
+      //     canvas1.style.display="none";
+      //     canvas2.style.display="none";
+      //     // document.getElementById("canvas1").style.display="none";
+      //     // document.getElementById("canvas2").style.display="none";
+      //     setCanvasSizeLarger(e);
+      //   }
+      //   else
+      //   {
+      //     //do some mouse actions here;
+      //   }
+      // }
+
+      function onMouseOut(e) {
+        if(e.id=="canvas3")
+          setCanvasSizeSmall(e);
+      }
+
+        //window.addEventListener( 'resize', onWindowResize, false ); 
+        //  function onWindowResize() {
+        //   windowX = window.innerWidth;
+        //   windowY = window.innerHeight;
+        // }
+
+
+        function onKeyPress(){
+          var x = event.key
+          if (x == "a" || x == "A") {
+            alert ("You pressed the 'A' key!");
+          }
+        }
+
+                  // if(e.key == "X" || e.key == "x"){
+          //   alert("You've chosen to quit demo3");
+          //   event.target.remove();
+          // }
+
+
+          function onKeyUp(){
+            var x = event.key
+            if (x == "a" || x == "A") {
+              alert ("You pressed the 'A' key!");
+            }
+          }
+
+          var handlefocus=function(e){ 
+            if(e.type=='mouseover'){ 
+              document.getElementById("canvas3").focus(); 
+              onMouseOver(event.target);
+              return false;
+            }
+            else if(e.type=='mouseout'){ 
+              document.getElementById("canvas3").blur();
+              onMouseOut(event.target)
+              return false;
+            } 
+            return true; 
+          };
+
+          function shiftPosition(e){
+            if(e.key=="j")
+            //move the absolute position to right
+          alert("cycling to the left")
+          if(e.key=="l")
+            alert("cycling to the right")
+          if(e.key=="i")
+            alert("cycling up")
+          if(e.key=="k")
+            alert("cycling down")
+        }
+
+
+        // canvas3.addEventListener('mouseover', handlefocus, false)
+        // canvas3.addEventListener('mouseout', handlefocus, false)
+        // canvas3.addEventListener('keydown', shiftPosition, false)
+
+
+         //Interaction via mouseover events
+         canvas1.addEventListener( 'mouseover', onMouseOver, false);
+         canvas1.addEventListener( 'mouseout', onMouseOut, false);
+         canvas2.addEventListener( 'mouseover', onMouseOver, false);
+         canvas2.addEventListener( 'mouseout', onMouseOut, false);
+
+
+         //Interaction of keyboard events
+         canvas1.addEventListener( 'keydown', onKeyPress, false);
+         window.addEventListener( 'keydown', function() {
+          if(event.key=='1'){
+           // setCanvasSizeSmall(canvas1);
+           toggleView(canvas1);}
+           else if(event.key=='2'){
+          // setCanvasSizeSmall(canvas2);
+          toggleView(canvas2);          
+        }
+        else if (event.key=='3'){
+          // setCanvasSizeLarger(canvas3);
+          toggleView(canvas3)
+        }
+        else
+        {}
+    }, false);
+
+        //  canvas2.addEventListener( 'keyup', onKeyUp, event => {
+        //   if (event.isComposing || event.keyCode === 229) {
+        //     return;
+        //   }
+        //   alert("1");
+        // })
+
+        window.addEventListener("load",Init,false);
+
+      </script>
+
+    </body>
+
+    </html>

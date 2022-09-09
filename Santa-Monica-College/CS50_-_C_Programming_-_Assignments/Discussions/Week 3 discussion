@@ -1,0 +1,31 @@
+Discussion 3 1 point in CS50
+
+Write small program that tests/checks several integer conditions
+
+x>=0 (positive)
+x<0 (negative)
+x%2 (even)
+(x+1)%2 (odd)
+
+#include <stdio.h>
+int main()
+int x;
+String sign;
+String oddOrEven;
+
+printf("Enter a number");
+scanf(%d,&x);
+//test positive
+if(x>=0) {
+	sign="positive";
+else
+	sign="negative";
+
+//test odd or even
+if((x+1)%2==0) {
+	oddOrEven="odd";
+else	
+	oddOrEven="even";
+
+printf("The number %d is", x);
+printf("%s %s", sign, oddOrEven)

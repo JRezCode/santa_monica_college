@@ -1,0 +1,12 @@
+<form>
+	<input type="checkbox">
+<button type="button">Click Me</button>
+<script>var checkBox = document.getElementsByTagName("input")[0];
+			checkBox.addEventListener("click", someClickableAction, false);
+			function someClickableAction(){
+			alert("Element activated by click using " + event);
+		}
+
+		var b = document.getElementsByTagName("button")[0];
+		b.onclick = function() { document.body.appendChild(document.createTextNode("Click"))};
+	</script>

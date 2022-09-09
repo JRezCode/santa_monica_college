@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html>
+ 	<meta name="viewport" content="width=device-width, initial-scale=1">
+ 	<meta charset="utf-8"/>
+	<head>
+
+		<title>CS80 Project</title>
+		<link rel = "stylesheet" type = "text/css" href = "myFinal2.css" />
+
+		<!--Addition style link for Fonts and a library reference for help to function hideLastImage -->
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Raleway+Dots&display=swap" rel="stylesheet">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+		<script>
+
+			function start(){
+				//At page load set the Image elements at top of page to width 100%
+				var images = document.getElementsByTagName("img");
+				for(var i = 0; i<=6; i++) {
+					if(images[i].id=="logo")
+						continue;
+					images[i].setAttribute("style","width:100%");
+				}
+			}
+
+
+			function hideLastImage(){
+				//This function uses the jQuery library to help hide overlapping elements in display area
+				// and makes use of a switch/case structure to do so using css property of nth child query
+				switch(clickCount){
+				case 2:
+					$("div:nth-child(1)").css("display", "none");
+					break;
+				case 3:
+					$("div:nth-child(2)").css("display", "none");
+					break;
+				case 4:
+					$("div:nth-child(3)").css("display", "none");
+					break;
+				case 5:
+					$("div:nth-child(4)").css("display", "none");
+					break;
+				case 6:
+				 	window.alert("You're loading the last project.");
+					$("div:nth-child(5)").css("display", "none");
+					break;
+				case 7:
+					window.alert("Removing last element from page");
+				 	window.alert("Press button once more to remove remaining page elements.");
+					$("div:nth-child(6)").css("display", "none");
+					break;
+				}
+			}
+
+			clickCount=1;
+			function loadNext() {
+				//function loadNext calls funcion to hide last image and uses getElementById with setAttribute
+				// to alter the ids of the individual div containers inside of the flexbox section
+				hideLastImage();
+				if(clickCount<=6)
+				{
+					document.getElementById(("p"+clickCount)).setAttribute("id","select");
+				}
+				else 
+				{
+					//remove the instructions within the orange box/container
+					var instr = document.getElementById("instructions");
+					instr.parentNode.remove();
+
+					//remove the section needed for image display and show final message
+					document.getElementById("rendering").remove();
+					document.getElementById("text1").style.display = "block";
+					document.getElementById("text2").style.display = "none";
+				}
+				clickCount++;
+			}
+	
+			window.addEventListener("load",start,false)
+
+		</script>
+
+	</head>	
+
+	<body>
+
+		<header class="header">
+			CS80 Website Project
+			<section>
+			<img class="logo" id="logo" src = "logo.png" alt = "my logo">
+		</section>
+		</header>
+		<section style="display: flex; align-items: ; justify-content: space-between;">
+			<button id="random" value="Button1" onclick="loadNext()">Cycle Projects</button> 
+			<button id="clear" value="Button4" onclick="window.location.reload(false)">Page Reload</button> 
+		</section>
+		
+		<section id="rendering">
+		</section>
+		
+	<!--The ending message is initially hidden, but then JavaScript will make it visible-->
+		<section class="messages">
+			<p id="text1" style="font-size: .9em; display: none"> This page is a demo that was built with HTML/CSS and JavaScript and can also be viewed on a phone, ipad or other table, as well as destop.  You may reload the page with button at the top right!</p>
+			<p id="text2" style="font-size: 1.2em" >Buttons will cycle through projects.  At end it will remove all remaining elements from the page.  Use reload button to navigate back over previous elements.</p>
+		</section>
+		
+		<section class="box" style="border: solid; border-style: double; border-color: orange; padding: 1eM;">
+			<p id="instructions"><strong>Note:</strong><em>This demo of the flexbox container allows pointing clicking, dragging, and hover effects.  Use button at page top to enlarge image.</em></p>
+			<section class="flexbox" style="display: flex; flex-wrap: wrap;">
+				<div id="p1" ><a href="#"><img src = "images/snap1.png" alt = "A screenshot of first HTML assignment"></a></div>
+				<div id="p2"><a href="#"><img src = "images/snap2.png" alt = "A screenshot of assignment HTML forms"></a></div>
+				<div id="p3"><a href="#"><img src = "images/snap3.png" alt = "A screenshot of assignment flexbox"></a></div>
+				<div id="p4"><a><img src = "images/snap4.png" alt = "A screenshot of assignment 4 randomizer"></a></div>
+				<div id="p5"><a href="#"><img src = "images/snap5.png" alt = "A screenshot with assignment 5 randomization"></a></div>
+				<div id="p6"><a href="#"><img src = "images/snap6.png" alt = "A screenshot of assignment 6 DOM + JS"></a></div>
+			</section>
+		</section>
+
+		<footer class="footer">This site was made by Jonathan Reznik for SMC Course CS80
+			
+		</footer>
+
+	</body>
+</html>
