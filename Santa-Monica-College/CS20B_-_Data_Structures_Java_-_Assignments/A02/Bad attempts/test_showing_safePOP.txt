@@ -1,9 +1,0 @@
-run:
-A
-B
-A
-A
-A
-A
-A
-BUILD SUCCESSFUL (total time: 0 seconds)

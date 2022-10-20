@@ -1,4 +1,0 @@
-run:
-mango peach
-mango orange
-BUILD SUCCESSFUL (total time: 0 seconds)

@@ -1,3 +1,0 @@
-Jonathan, 100years of age, Bowling Average:200
-Sam, 30 years of age, and Bowling Average:150
-Devi, 35 years of age, and Bowling Average:100
