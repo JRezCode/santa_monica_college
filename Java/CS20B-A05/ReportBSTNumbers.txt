@@ -1,0 +1,22 @@
+The number 4089 is contained: false
+The number 2837 is contained: false
+The number 9903 is contained: false
+The number 1909 is contained: true
+The number 8228 is contained: false
+The number 1917 is contained: false
+The number 6887 is contained: false
+The number 3815 is contained: false
+The number 2920 is contained: true
+The number 7213 is contained: false
+The number 8528 is contained: false
+The number 4018 is contained: false
+The number 5326 is contained: true
+The number 5298 is contained: false
+The number 4478 is contained: false
+The number 5673 is contained: false
+The number 9321 is contained: false
+The number 4375 is contained: false
+The number 563 is contained: true
+The number 3917 is contained: false
+The average value in the tree is 5052.0
+The number of elements below the average is 508
