@@ -27,7 +27,13 @@ public class EditString {
         
         while(true){
 			//menu using switch/case (for cases - Upper, Lower, Reverse, Change chars, and Undo...and Finish)
-            System.out.println("Make changes to the string...\nU\nL\nR\nC\nZ\nX - show result");
+            System.out.println("Make changes to the string..."
+                + "\n(U)pper case convert"
+                + "\n(L)ower case convert"
+                + "\n(R)everse string"
+                + "\n(C)haracter replace"
+                + "\nZ - undo"
+                + "\nX - show result");
             switch(input.next().toUpperCase()){
                 case("U"):
                     stringStack.push(stringStack.top().toUpperCase());
@@ -43,7 +49,7 @@ public class EditString {
                         backward.append(forward.charAt(phrase.length()-i-1));
                     }
 					//finally the result is pushed to the stack
-                    stringStack.push(reversed.toString());
+                    stringStack.push(backward.toString());
                     break; 
                 case("C"):
 					//Scanner input is called again
@@ -63,6 +69,7 @@ public class EditString {
 					
                 case("X"):
 					//This is the final input to then finish the program using top() and exit
+                    input.close();
                     System.out.println("Your result is:\t" + stringStack.top());;
                     System.out.println("\nThank you for using the String Editor");
                     System.exit(0);
