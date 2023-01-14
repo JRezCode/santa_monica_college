@@ -88,8 +88,8 @@ public class DuplicateTest {
 			for(int j = i+1; j<l.length-i;j++){
 				if(l[i].equals(l[j]))
 					found = true;
-				else
-					continue;
+				// else
+				// 	continue;
 			}
 		}
 		return found;
