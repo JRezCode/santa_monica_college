@@ -1,0 +1,22 @@
+program initializeArray;
+#include( "stdlib.hhf" );
+
+static
+csetVar : cset[10];
+
+begin initializeArray;
+
+mov( 0, ebx );
+
+FLp:
+mov( 0, csetVar[ ebx ]);
+mov( 0, csetVar[ ebx+4 ]);
+mov( 0, csetVar[ ebx+8 ]);
+mov( 0, csetVar[ ebx+12 ]);
+add( 16, ebx);
+cmp( ebx, 256*16 );
+jb FLp;
+
+stdout.put("Done");
+
+end initializeArray;

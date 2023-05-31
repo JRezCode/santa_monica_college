@@ -1,0 +1,79 @@
+//  File: Table.hla
+//  Program Author:  Jonathan Reznik, 1654919
+//  Course: CS17
+//  Date: 3-27-2020
+//  Description: This program prints a table of values
+//  that show the value doubling in three columns
+//  and adding repeating for 4 rows of consecutive unit
+//  increments in the row value.  This is implemented 
+//  with the HLA instruction ROL which rotates bit values
+//  of the CPU register, in this case EBX.
+//  I/O Notes: 1 input functional is used to read in the
+//  the 8-bit integer value. And stdout.puti32Size is used
+//  from stdlib to allow for formatting, width and padding.
+
+program doubleTable;
+#include( "stdlib.hhf" );
+
+static
+iDataValue : int8; // the value for input
+
+begin doubleTable;
+
+// Prompt the user for the value
+stdout.put( "Please provide a starting value (0-124): " );      //0 < input < 124 prevents overflow 
+
+stdin.get( iDataValue );
+stdout.put( "Double Table", nl, iDataValue, ": " );
+
+mov( 0, EBX );
+mov( iDataValue, BL );
+rol(1,EBX);                     // doubles the value
+stdout.puti32Size(EBX,4,' ');
+rol(1,EBX);                     // doubles the value
+stdout.puti32Size(EBX,4,' ');
+rol(1,EBX);                     // doubles the value
+stdout.puti32Size(EBX,5,' ');
+stdout.newln();
+add( 1, iDataValue );           //increment the variable
+
+
+//second row repetition
+stdout.put( iDataValue, ": " );
+mov( 0, EBX );                  //necessary to clear register EBX
+mov( iDataValue, BL );
+rol(1,EBX);                     
+stdout.puti32Size(EBX,4,' ');
+rol(1,EBX);                     
+stdout.puti32Size(EBX,4,' ');
+rol(1,EBX);
+stdout.puti32Size(EBX,5,' ');
+stdout.newln();
+add( 1, iDataValue );           //increment the variable
+
+//third row repetition
+stdout.put( iDataValue, ": " );
+mov( 0, EBX );
+mov( iDataValue, BL );
+rol(1,EBX);
+stdout.puti32Size(EBX,4,' ');
+rol(1,EBX);
+stdout.puti32Size(EBX,4,' ');
+rol(1,EBX);
+stdout.puti32Size(EBX,5,' ');
+stdout.newln();
+add( 1, iDataValue );           //increment the variable
+
+//fourth row repetition
+stdout.put( iDataValue, ": " );
+mov( 0, EBX );
+mov( iDataValue, BL );
+rol(1,EBX);
+stdout.puti32Size(EBX,4,' ');
+rol(1,EBX);
+stdout.puti32Size(EBX,4,' ');
+rol(1,EBX);
+stdout.puti32Size(EBX,5,' ');
+stdout.newln();
+
+end doubleTable;

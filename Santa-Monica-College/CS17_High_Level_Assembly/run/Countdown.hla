@@ -1,0 +1,56 @@
+program doPattern;
+#include( "stdlib.hhf" );
+
+//  File: Countdown.hla
+//  Program Author:  Jonathan Reznik, 1654919
+//  Course: CS17
+//  Date: 4-02-2020
+//  Description: A number pattern generator to demonstrate the
+//  nested looping structure when done using labels in HLA.
+//  The structures of HLL while loop and for loop were used, to
+//  test conditions and also process a count controlled increment. 
+//  I/O Notes:  The input output is very similar to other programs
+//  with just stdin and stdout libraries for a single int8 value
+//  read in at the beginning.
+
+static
+iUpperValue : int8; 		// the value for user input
+zCount: int8;			// a counter variable to help for loop processing
+
+begin doPattern;
+
+// Prompt the user for the value
+stdout.put( "Gimme a decimal value to use as n: ");
+
+stdin.get( iUpperValue );
+mov(iUpperValue,CL);		//CL to store the highest value in pattern
+mov(1,DH);			//DH to store the lowest value in pattern
+
+stdout.put( "Here's your number pattern: " );
+
+WhileLp:
+WhileLpTermination:
+cmp(DH,CL);			
+jnl WhileLpDone;		// exits the program if DH >= CL
+WhileLpBody:			
+NestedForLp:				
+InitializeNestedForLp:		
+mov(DH,zCount);			// DH also initializes the for loop's count
+NestedForLpTerminationTest:
+cmp(zCount,CL);		
+jg NestedForLpDone;
+NestedForLpBody:
+stdout.put(zCount);
+NestedForLpIncrement:
+inc(zCount);			// increment Count
+jmp NestedForLpTerminationTest;	// count controlled looping
+NestedForLpDone:
+inc(DH);			//DH register incremented to form pattern
+dec(CL);			//CL register decremented to form pattern
+jmp WhileLp;
+WhileLpDone:
+
+stdout.newln();
+
+
+end doPattern;

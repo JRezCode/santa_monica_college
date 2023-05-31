@@ -1,0 +1,53 @@
+<html>
+
+<form action="/action_page.php">
+    Insert text:<br>
+    <input type="text" id="field" autofocus>
+    <div id="suggestions" style="cursor: pointer">
+		
+    </div>
+    </form>
+
+<script>
+  // Builds up an array with global variable names, like
+  // 'alert', 'document', and 'scrollTo'
+  var terms = [];
+  var output = document.getElementById("suggestions");
+  for (var name in window)
+    terms.push(name);  
+    
+    //Pseudocode (breaks script)
+    var text = document.querySelector("input");
+    text.addEventListener("input", function() {
+    output.textContent = text.value.length;
+  });
+	text.addEventListener("keydown", function(event) {
+    // The key code for F2(replace with TAB) happens to be 113
+    if (event.keyCode == 113) {
+      completeSelection(textarea, newcompletion);
+      event.preventDefault();
+    }
+  });
+	function completeSelection(arg1, arg2){
+	
+
+	}
+  
+  /* PSUDOCODE FOR REST OF ASSIGNMENT */
+//	while ( input into text field )
+//    use DOM to append new text node
+//    if ( input field value is contained in list of words/terms)
+//    add values (first index) to text node correctly formatted (light/dark font)
+//    add keyboard event listener to tab completion
+//    remove node 	
+  /* Additional notes
+   * The best event for updating the suggestion list is "input" since that will fire immediately when the content of the field is changed.
+   * Then loop over the array of terms and see whether they start with the given string. For example, you could call indexOf and see whether the result is zero. For each matching string, add an element to the suggestions <div>. You should probably also empty that each time you start updating the suggestions, for example by setting its textContent to the empty string.
+   * You could either add a "click" event handler to every suggestion element or add a single one to the outer <div> that holds them and look at the target property of the event to find out which suggestion was clicked.
+   * To get the suggestion text out of a DOM node, you could look at its textContent or set an attribute to explicitly store the text when you create the element. 
+   */
+   
+   
+</script>	
+
+</html>

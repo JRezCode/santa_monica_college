@@ -1,0 +1,49 @@
+Physical link
+	-creating a connection
+	-Ethernet (48-bit number address)
+	
+Data link layer
+	-bridge?  hardware address ARP
+	-captured in wireshark at the same section as IP/IPx
+	-physical link may have address (ethernet mac address)
+	-maybe a phone dialup to create
+		-PPP
+	
+Networking layer
+	-IP protocol communicates with both sides
+	-TCP
+	-UDP
+
+
+Physical + data link = have to know the hardware address...
+	e.g. Ethernet needs an ethernet address protocol to function
+		
+Networking layer = daily use and common for contacting other network hosts, etc.
+
+
+
+Address resolution protocol
+	-hardware addressing only works on hardware, software only on software
+	-the protocol takes IP addresses and converts them to a hardware address
+	-network card:
+		a. Chip for processing
+		b. memory (data)
+		c. has software (builtin)	
+	-method of broadcast implementation
+		broadcast's the address - 6 FF's
+		Type field on sender end and used on receiver side (0806)
+	-method of translation
+		arp protocol sends arp message (see cheat sheet for packet contents)
+		receiver sends its hw address back to the broadcaster using unicast (direct not broadcast)
+		it is recorded in the table of of arp for both computers		
+	-once discovered network address is stored in a table
+		efficiency, table in memory is checked first
+		each time it has to discover it uses 3 messages (for discovering)
+		
+
+
+
+
+		
+		
+		

@@ -1,0 +1,34 @@
+
+C, C++, Java (the 18-wheel car)
+Objective-C and C# (newer developments by Microsoft and Apple)
+Even newer - Swift
+
+Class for my rect.  Class has a point.
+When writing a new class no additional "public" classes inside a public class.
+is - defining the subclass and superclass.
+
+
+
+Object - google object.java (docs.oracle.com)
+	Student is a person.  Person (not all) = Student.
+	- immediate superclass and hierarchy of (student is person, but also an object)
+	
+Private/Public 
+Setters or without setters to change the value of an object (variable stored in memory is a reference)?
+
+
+Overiding - method in 
+2 constructor - the designated one which is passed arguments, and the empty construct
+
+E.g.   Soda machine
+Method - get payment, with argument credit card. 
+
+Example (bad)
+public MyRect(int w, int h, MyPoint p)
+{ this.width = w; heigh = h; origin = p;
+}
+	- references MyPoint class/object
+	- 
+	
+	
+	

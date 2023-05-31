@@ -1,0 +1,50 @@
+
+
+Relational Database Model (Chapter 3)
+System catalog and Data dictionary
+Operators
+	-Union/Intersects
+	-
+
+Creating Tables in Database
+	 -Data type: determine based on needs of the variable
+	 -Conventions for variable names
+	 -Table must have a primary key for the rows that are unique
+	 -Attributes in a table have a determination if the value makes it possible to know the value of another
+
+Entity entigrity in a Table
+       -No null in the primary key
+       -unique rows in the key attribute
+
+Integrity Rules (entity and refererential integrity)
+	  -The rules for deleting data in a rdb
+	  -
+
+Key types
+Super key, e.g. 
+Candidate key, e.g. serial number
+
+
+Constraints
+Not Null - constraint...place o a column to ensure rows have all values
+Normal use in the process of creating a table (SQL)
+Formal SQL constraint entered in after the column field attributes
+
+       E.g.  CREATE TABLE.....
+       	     	   ( field 1	Type1
+		    field 2	Type2
+		    ...
+		    CONSTRAINT	type
+		  );
+		  
+The constraint has a name just like other attributes would for column name, etc.
+
+Entity Relationship Diagrams
+
+Bridge table - has unique key between two other tables - can be skipped for relationships
+
+Relational Diagrams
+Linking the
+
+Guaranteed Access
+Granting access to users for the database after creating the database

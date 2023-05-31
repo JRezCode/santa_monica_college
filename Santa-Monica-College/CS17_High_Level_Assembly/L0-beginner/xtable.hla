@@ -1,0 +1,81 @@
+//  File: xtable.hla
+//  Program Author: Jonathan Reznik, 1654919
+//  Course: CS17
+//  Date: 3-22-2020
+//  
+//  Description: A program to count up skipping
+//  and replacing values with initial value in
+//  an X pattern of locations in a table. I/O
+//  involves stdlib functions for user input.
+//
+
+program XCount;
+#include( "stdlib.hhf" );
+static
+sValue: int8 :=0;  //used for count starting value
+
+begin XCount;
+
+stdout.put( "Gimme a starting value: ");
+stdin.get(sValue);
+mov(sValue, AL);	//copy sValue into 8-bit register
+
+mov(0,EBX);		//set EBX register to 0
+mov(EAX,EBX);		//copy start value into EBX
+
+//Remaining routine is to print out to stdout either the
+//start value or an incremented value that EBX stores
+
+stdout.put(sValue:3);
+add(1,EBX);		//add 1 to EBX
+stdout.puti8Size(BL,3,' ');
+add(1,EBX);
+stdout.puti8Size(BL,3,' ');
+add(1,EBX);
+stdout.puti8Size(BL,3,' ');
+stdout.put(sValue:3);
+
+stdout.newln(); //Line 2
+add(1,EBX);
+stdout.puti8Size(BL,3,' ');
+stdout.put(sValue:3);
+add(1,EBX);
+stdout.puti8Size(BL,3,' ');
+stdout.put(sValue:3);
+add(1,EBX);
+stdout.puti8Size(BL,3,' ');
+
+stdout.newln(); // Line 3
+add(1,EBX);
+stdout.puti8Size(BL,3,' ');
+add(1,EBX);
+stdout.puti8Size(BL,3,' ');
+stdout.put(sValue:3);
+add(1,EBX);
+stdout.puti8Size(BL,3,' ');
+add(1,EBX);
+stdout.puti8Size(BL,3,' ');
+
+stdout.newln(); // Line 4
+add(1,EBX);
+stdout.puti8Size(BL,3,' ');
+stdout.put(sValue:3);
+add(1,EBX);
+stdout.puti8Size(BL,3,' ');
+stdout.put(sValue:3);
+add(1,EBX);
+stdout.puti8Size(BL,3,' ');
+
+stdout.newln(); // Line 5
+stdout.put(sValue:3);
+add(1,EBX);
+stdout.puti8Size(BL,3,' ');
+add(1,EBX);
+stdout.puti8Size(BL,3,' ');
+add(1,EBX);
+stdout.puti8Size(BL,3,' ');
+add(1,EBX);
+stdout.put(sValue:3);
+//stdout.newln(); // nicely format with an ending newline
+
+end XCount;

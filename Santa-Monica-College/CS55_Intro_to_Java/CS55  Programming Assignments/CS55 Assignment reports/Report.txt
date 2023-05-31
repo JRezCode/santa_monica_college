@@ -1,0 +1,17 @@
+Report:
+I have tested this file (Calculator.java) and it has no structural or programmatic problems to it. One issue however was choice of methods when working with several numerical data types (see comments in program). I chose a solution to use commenting of selected source code blocks to implement separate calculators for Integer or Float type. Style formatting was also an issue I did not have time to improve the text color, but I would have liked to be changing input color from black text to red text, and fitting it all on one line.
+
+Sample Output:
+Hi, I am really good at math!  Try me out.  I can add, subtract, multiply and divide.
+Please enter two numbers and then press Enter:
+29.5
+2.1
+Please enter one of the operations +,-,*,/  and press Enter:
+*
+29.5 * 2.1 = 61.95
+ I am great at Multiplication!
+ I multiplied 29.5 by 2.1
+Press 'q' to exit, or any other character followed by enter to continue:
+q
+Bye bye!
+BUILD SUCCESSFUL (total time: 17 seconds)

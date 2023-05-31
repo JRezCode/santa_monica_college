@@ -1,0 +1,6 @@
+"G:\Program Code\..\java\jdk1.8.0_192\bin\java"  -classpath "G:\Program Code" "ArrayPair"
+Process started (PID=4632) >>>
+orange peach
+orange orange
+<<< Process finished (PID=4632). (Exit code 0)
+================ READY ================

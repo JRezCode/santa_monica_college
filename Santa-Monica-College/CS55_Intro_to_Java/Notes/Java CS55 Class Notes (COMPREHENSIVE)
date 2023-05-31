@@ -1,0 +1,148 @@
+﻿8/28/2018
+CS55 Java 
+9:35 am start in Bus 201
+Textbook (pdf available online) buy comprehensive edition of book later  
+
+Intro Discussion:
+Stanford class Java professor Paul
+Java and Swift iOS for next semester
+Javascript/HTML
+
+Programming Clubs – in different locations, ACM at UCLA, also SMC 
+Canvas – Syllabus, assignments
+Advanced Java – covers I/O, security, and more
+
+Java Function, e.g. scanf or printf
+
+What is an Object?  Think of it as anything that is given a name is an object.
+What is OOP?
+What advantages are there of OOP?
+	1.  It helps with large or long code problems
+	2.
+	3.
+Working with chosen developer environment
+
+
+Reminder:  For Assignments to submit source code format (do not zip the files)
+
+
+From Syllabus – skipping exception handling later in order to get to important chapters 9-11 and 13
+
+
+
+9/6/2018
+CS55 Java 
+9:35 am start in Bus 201
+
+Textbook (pdf available online) buy comprehensive edition of book later  
+
+Intro Discussion:
+Stanford class Java professor Paul
+Java and Swift iOS for next semester
+Javascript/HTML
+
+Programming Clubs – in different locations, ACM at UCLA, also SMC 
+Canvas – Syllabus, assignments
+Advanced Java – covers I/O, security, and more
+
+Java Function, e.g. scanf or printf
+
+What is an Object?  Think of it as anything that is given a name is an object.
+What is OOP?
+What advantages are there of OOP?
+	1.  It helps with large or long code problems
+	2.
+	3.
+Working with chosen developer environment
+
+
+Reminder:  For Assignments to submit source code format (do not zip the files)
+
+
+From Syllabus – skipping exception handling later in order to get to important chapters 9-11 and 13
+
+
+Security applications of Java
+
+Use of 'do while' loop that runs forever...
+Break (ends the process kicks out of the loop)
+
+
+Methods - read more and practice with next, nextln() etc. etc
+Do not put exit in the method (VERY IMPORTANT).
+
+
+Writing a class (own)...
+Compare two strings (variables) in the class...have to build it
+Eg. Two applicances (TV, equal if they have the same volume, or channel)
+Eg.
+
+Type
+Type is important in java.
+
+Input/Output (topic)
+Use of scanner
+
+
+
+
+9/13/2018
+In class 9:30TUE/THU Java Programmng Intro
+
+
+Security applications of Java
+
+Use of do while loop that runs forever...
+Break (ends the process kicks out of the loop)
+9/18/2018
+CS55
+Java
+String assignmentExercise - file processing 
+(Some aspects like in C programming language)
+
+Read from a file and write to a file.  
+Scanner - system.in input and system.out ouput and system.err error
+
+
+First step - create a project in IDE which creates a file and a folder
+
+
+1. open a file
+2. Read from file and display
+3. Then write to another file
+
+Goals (secondary)
+Later reading the file and statistics of file like # of characters
+
+Package - in a folder somewhere (e.g. on the Desktop)
+Doc program - uses the comment, and author, method arguments to take a method and convert it using html
+
+
+1. For file processing
+	a. Helps to have a file to work with - create it inside a text editor (data.txt)
+	b. Scanner() method for infile;
+	c. What if the file isn't there...
+		i. exception (try simple not expensive handling of errors)
+		ii.  throw and throws keywords - for exception handling Ch13 
+
+2. Read from the file
+	a. Java does use end of file, try and catch (with exceptions until end of file), or simply while statement
+
+			while(input.hasNext())       //as long as there is a next line continue the loop				
+
+	b. Inside loop - run a input/ouput (see .java code in Canvas)
+	c. Close the file - always remember to do this since no compiler error
+
+		* Additional processing line by line in file can be done within a nested loop
+	
+3. Write output to a file
+	a. Path name (also applied to input file)
+	b. Function from class PrintWriter associates new file and method
+	c. Methods for the class (print, println, printf)
+	d. For concurrent writing output to screen AND the file together, ok to have statements back to back
+
+
+
+Java file types reads (best file processing among languages).  Binary, Text, Bytecode, and more Advanced concepts (Object).
+
+
