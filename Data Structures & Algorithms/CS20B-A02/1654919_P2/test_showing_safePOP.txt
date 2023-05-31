@@ -1,7 +1,0 @@
-run:
-B
-A
-null
-null
-null
-BUILD SUCCESSFUL (total time: 0 seconds)
