@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+ <meta charset = "utf-8">
+ <title>Event Handling using HTML5 Canvas</title>
+ <style rel="stylesheet"  type="text/css" href="FinalProject.css"></style>
+</head>
+
+<body>
+
+  <section>
+    <h3>Demo of various event listening and handling capabilities of the browser with JS</h3>
+  </section>
+  
+  <form name="size" action="#">
+    <input id="L" type="radio" id="input1" name="myradio" value="Larger">
+    <label for="input1">Large View</label>
+    <input id="S" type="radio" id="input2" name="myradio" value="Small">
+    <label for="input2">Small View</label>
+  </form>
+
+  <h4>This is a interactive site demonstration of a group of canvas elements in HTML for user actions of keyboard and mouse click/hover events.</h4>
+
+  <p>Here is how to use it.</p>
+
+  <p><strong>Instructions/Basic Functionality:</strong></p>
+  <ol>
+    <li>Use radio buttons to resize visible canvas rendering.  (Available any time).
+    </li>
+    <li>Keyboard/Mouse events:
+      <ul>
+        <li>Keyboard events are the more straightforward to use.  Mouse events are a little more experimental, but still incorporated.</li>
+        <li>When using the keyboard numbers '1', '2' or '3' are the correct keys to trigger actions for the page. Try this now. Show and hide canvas 2, by pressing the '2' key on your keyboard.  Then try with '1'.</li>
+        <li>Did you notice there is no canvas 3??  That needs to be be created now before interacting with it.  Use this button to create (or destroy) canvas 3.</li>
+        <div id="buttons">
+          <button name="focus demo 3" onclick="add3()">Create Canvas 3</button>
+        </div>
+      </ul>
+    </li>
+  </ol>
+  <p>HINT:When using the button above you can actually add and remove canvas 3 with several repeated button clicks as the button will know to add the element again as well as destroy it....</p> 
+  <p>
+    <div id="messages"></div>
+  </p>
+  <h4>Now it is time to get rid of canvas 4 (it lacks the nice colors of canvases 1, 2 and 3).</h4>
+  <ul>
+    <li>The canvas 4 element has its own rules in terms of interaction, so here they are</li>
+    <li>The only thing that works canvas 4 is resizing (radio button) or complete removal</li>
+    <li>To remove canvas 4 you need to first grab focus, to it, by clicking, or selecting it somehow</li>
+    <li>Once it is selected press the 'X' key on the keyboard and you will be alerted about removal.</li>
+  </ul>
+  <p>HINT: Before removing canvas 4 is also a good time with all four canvases shown to experiment with keyboard events try to hide 1, 2 and 3, use the numbers on the keyboard to do so... it demonstrates the arrangement of these elements on the page. If you remove all then canvas 4 will slightly move up to here.</p> 
+  <canvas class="windowed" id = "canvas1" tabindex="0"></canvas>
+  <canvas class="windowed" id = "canvas2" tabindex="0"></canvas>
+  <canvas class="windowed" id = "canvas4" tabindex="0"></canvas>
+  <section>
+    <h4>Some further guide:</h4>
+    <ul><li>Showing or hiding canvases with keyboard presses</li><li>Toggling on/off of canvas 3 (before removing canvas 4)</li><li>Removing the fourth canvas permanently</li><li>Hover/click on a canvas  to hide others (doesn't work with canvas 4), also isn't a very smooth transition overall.</li>
+    </ul></li>
+
+    <p>Here's some ideas to try in order doing the following:</p>
+    <ul>
+      <li>To start click the radio button setting the canvas size to a large view</li>
+      <li>Now click select and test the indexed TAB (or Shift + TAB) cycling effect through elements... pretty cool!</li>
+      <li>Go back to Small view with radio button at top</li>
+      <li>You now need to add canvas 3 if you haven't already done so click the button for Create Canvas 3
+        <li>Beware: if you haven't added canvas 3 before and you remove canvas 4 then it won't know where to add the new canvas, so if you want the nice colors start with adding canvas 3 first!</li>
+      </li>
+    </ul>
+  </section>
+
+
+  <script>
+
+    //Main script that does a lot of canvas stuff mostly drawing, declaring and that kind of thing.
+    
+    const canvas1 = document.getElementById("canvas1");
+    const canvas2 = document.getElementById("canvas2");
+    const canvas4 = document.getElementById("canvas4");
+
+    var ctx1 = canvas1.getContext("2d")
+    var ctx2 = canvas2.getContext("2d")
+    var ctx4 = canvas4.getContext("2d")
+
+    setCanvasSizeLargest(ctx4.canvas)
+
+    function start(){
+      redraw();
+    }
+
+    function redraw(){
+      drawcanvas(ctx1,"red","canvas1");
+      drawcanvas(ctx2,"blue","canvas2");
+      drawFunCanvasBlackWhite(ctx4,"canvas4");
+    }
+
+    window.addEventListener("load",start,false);
+
+
+    //this function produces an identifiable drawing and name field for each canvas
+    function drawcanvas(ctx, color, name){
+      var grd = ctx.createRadialGradient(75, 50, 5, 90, 60, 100);
+      grd.addColorStop(0, color);
+      grd.addColorStop(1, "white");
+      ctx.fillStyle = grd;
+      ctx.fillRect(40, 90, 150, 100); 
+      ctx.font = "italic 24px serif";
+      ctx.fillText(name, 20, 50);
+      ctx.textBaseline = "center";
+    }
+
+    function drawFunCanvasBlackWhite(ctx,name){
+      ctx.font = "italic 24px serif";
+      ctx.fillText(name, 20, 50);
+      ctx.beginPath();
+      ctx.moveTo(25, 60);
+      ctx.lineTo(ctx.canvas.width, 60);
+      ctx.lineTo(25, ctx.canvas.height);
+      ctx.fill();
+    }
+
+    //Dynamic content introduced via remove and add methods that are used with button3 onclick
+    function remove3()
+    {
+      document.getElementById("canvas3").remove();
+      document.getElementsByTagName("BUTTON")[0].setAttribute("onclick","add3()");
+    }
+
+    function add3(){
+      let add = document.createElement("canvas");
+      add.setAttribute("id", "canvas3");
+      add.setAttribute("tabindex","0");
+      document.body.insertBefore(add, document.getElementById("canvas4"));
+      window.canvas3 = document.getElementById("canvas3");
+      window.ctx3 = canvas3.getContext("2d")
+      drawcanvas(ctx3, "yellow", "canvas 3");
+      canvas3.addEventListener( 'mouseover', onMouseOver, false);
+      document.getElementsByTagName("BUTTON")[0].setAttribute("onclick","remove3()");
+    }
+
+    //experimental feature to set size of canvas even larger
+    function setCanvasSizeLargest(canvas) 
+    {
+      canvas.width=window.innerWidth;
+      canvas.height=window.innerHeight;
+    } 
+
+    function setCanvasSizeLarge(canvas) {
+      canvas.width=800;
+      canvas.height=450;
+      redraw();
+    }
+
+    function setCanvasSizeSmall(canvas) {
+      canvas.width=302;
+      canvas.height=152;
+    }
+
+
+    
+    var toggleView = function(canvas) {
+      if(canvas.style.display!="none")
+        canvas.style.display="none";
+      else
+        canvas.style.display="inline"
+    }
+
+
+    //This mouseover function is a bit messy and probably unnecessary but it is used to
+    //query the canvas demo with mouse and hide other ones, and uses try/catch block as well
+    function onMouseOver(e) {
+      if(e.id==undefined)
+        e=e.target
+      message1 = document.createTextNode("Mouse is over demo number "+e.id.slice(6,));
+      if(document.getElementById("messages").firstChild!=null)
+        document.getElementById("messages").firstChild.remove();
+      document.getElementById("messages").appendChild(message1);
+      if(e.id=="canvas3"){
+        canvas1.style.display="none";
+        canvas2.style.display="none";
+      }
+      if(e.id=="canvas2"){
+        canvas1.style.display="none";
+        try {
+          canvas3.style.display="none";
+        } catch(e) {
+          console.log("Error");
+        }
+      }
+      if(e.id=="canvas1"){
+        canvas2.style.display="none"
+        try {
+          canvas3.style.display="none";
+        } catch(e) {
+          console.log("Error");
+        }
+      }
+    }
+
+
+    //The function that removes canvas 4 with key press 
+    function onKeyPress(){
+      var x = event.key
+      if(event.key == "X" || event.key == "x"){
+        alert("You've chosen to remove canvas 4");
+        event.target.remove();
+        document.getElementsByTagName("button")[0].disabled=true;
+      }
+    }
+
+
+
+    //A helper listener for focus on canvas 3 (minorly used)
+    var handlefocus=function(e){ 
+      if(e.type=='mouseover'){ 
+        document.getElementById("canvas3").focus(); 
+        onMouseOver(event.target);
+        return false;
+      }
+      else if(e.type=='mouseout'){ 
+        document.getElementById("canvas3").blur();
+        onMouseOut(event.target)
+        return false;
+      } 
+      return true; 
+    };
+
+    //EventListeners
+    canvas1.addEventListener( 'mouseover', onMouseOver, false);
+
+    canvas2.addEventListener( 'mouseover', onMouseOver, false);
+
+    canvas4.addEventListener( 'keydown', onKeyPress, false);
+
+    window.addEventListener( 'keydown', function() 
+     { if(event.key=='1')
+     toggleView(canvas1);
+     else if(event.key=='2')
+      toggleView(canvas2);
+    else if (event.key=='3')
+      toggleView(canvas3);
+    else {
+      if(isFinite(event.key))
+        alert("Try with only '1', '2', or '3'")}
+    }, false);
+
+  </script>
+
+  <script>
+
+    //Script number two creats an array of all the canvas elements
+
+   var canvas = [];
+   (function(){
+     canvas = Array.from(document.getElementsByTagName("canvas"))
+     setTimeout(arguments.callee, 10000);
+   })();
+
+
+    //Init is run for the radio button resizing 
+   function Init () {
+    var radio_small = document.getElementById ("S");
+    var radio_larger = document.getElementById ("L");
+    radio_small.addEventListener ("RadioStateChange", OnRadioStateChange, false);
+    radio_larger.addEventListener ("RadioStateChange", OnRadioStateChange, false);
+  }
+
+  function OnRadioStateChange (event) {
+    var radio = event.target;
+    if(radio.checked){
+      if(radio.value=="Larger")
+        canvas.forEach(function(c) { setCanvasSizeLarge(c) });
+      else if(radio.value=="Small")
+        canvas.forEach(function(c) { setCanvasSizeSmall(c) });
+      else
+        alert("Unhandled error");
+    }
+
+    //this function redraws canvas elements according to prior script
+    redraw();
+  }
+
+  window.addEventListener("load",Init,false);
+</script>
+
+
+</body>
+
+</html>
