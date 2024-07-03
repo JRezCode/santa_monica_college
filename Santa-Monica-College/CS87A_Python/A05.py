@@ -25,7 +25,7 @@
 def make_avg_pm2_dictionary():
   air_quality_dict = {}
   a = air_quality_dict
-  f_read = open('air_data.tsv','r', encoding = "ISO-8859-1")
+  f_read = open('data/air_data.tsv','r', encoding = "ISO-8859-1")
   line = f_read.readline()
   for entry in f_read.readlines():      
     key=entry.split(sep="\t")[0]
@@ -51,7 +51,7 @@ def add_cia_population_data(aqd):
   aqd['Myanmar']+=[POPULATION_OF_MYANMAR]
  
   #Function should usually begin here  
-  f_read = open('cia_population.tsv','r', encoding = "ISO-8859-1")
+  f_read = open('data/cia_population.tsv','r', encoding = "ISO-8859-1")
   for entry in f_read.readlines():
     if entry.split(sep="\t")[1] in aqd:
       aqd[entry.split(sep="\t")[1]]+=[int(entry.split(sep="\t")[2])]

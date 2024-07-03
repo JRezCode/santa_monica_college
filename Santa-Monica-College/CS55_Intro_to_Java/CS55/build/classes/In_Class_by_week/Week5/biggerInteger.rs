@@ -1,3 +1,0 @@
-MyPoint
-biggerInteger
-APerson

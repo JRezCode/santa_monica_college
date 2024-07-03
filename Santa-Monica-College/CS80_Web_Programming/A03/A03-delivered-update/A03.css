@@ -1,0 +1,48 @@
+/* External Style Sheet */
+
+header h1 		{ 	margin-top: 0px; 
+					font-family: tahoma, helvetica, sans-serif; 
+					color: white; 
+					text-decoration: underline; 
+					text-align: center;}
+
+.header 		{ 	background-color: deepskyblue; 
+					padding: .2em  }
+
+body			{ 	font-family: arial, helvetica, sans-serif; }
+
+.main_section   { 	border: 10px solid deepskyblue; 
+					border-style: groove }
+
+.footer         { 	border: 5px solid lightgreen;
+					padding: .1em; }
+
+img            	{	width:100%; }
+
+.wrapper		{
+				display: flex;
+                    		flex-wrap: wrap; 
+                    		border-width: thick; 
+				border-style: double; 
+				border-color:yellow; 
+			}
+.box			{
+			flex: 16%;
+			}
+
+
+		/*.box>*          {                    flex=1 1 160px;
+
+                margin: 10px;
+}
+*/
+
+@media screen and (max-width: 1280px)
+{
+    .col {flex: 30%}
+}
+
+@media screen and (max-width: 414px)
+{
+    .col {flex:100%}
+}
