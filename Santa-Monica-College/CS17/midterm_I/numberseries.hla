@@ -1,0 +1,48 @@
+// Filename:numberseries.hla
+// Author: Jonathan Reznik, 1654919  
+// Description: Quiz 1 program 1
+
+program AlternateNumSeries;
+#include( "stdlib.hhf" );
+
+static
+iStart: int16;
+iAmount: int16 := 1;
+kSign: boolean := true;
+
+begin AlternateNumSeries;
+stdout.put("Gimme data: ");
+stdin.get(iStart);
+
+//Store start value in register CX
+mov(iStart,CX);
+
+forLoop:
+forLoopInitialize:
+mov(0,DX);
+forLoopTerminationTest:
+cmp(DX,iStart);
+jnl forLoopDone;
+forLoopBody:
+cmp(DX,0);
+je skipUnderscore;
+stdout.put("_");
+skipUnderscore:
+stdout.puti16(CX);
+ifCase:
+test(1,kSign);
+jz elseCase;
+add(iAmount,CX);
+jmp endElseCase;
+elseCase:
+sub(iAmount,CX);
+endElseCase:
+inc(iAmount);
+not(kSign);
+forLoopIncrement:
+inc(DX);
+jmp forLoopTerminationTest;
+forLoopDone:
+stdout.newln();
+
+end AlternateNumSeries;

@@ -1,0 +1,73 @@
+//  File: Binary.hla
+//  Program Author:  Jonathan Reznik, 1654919
+//  Course: CS17
+//  Date: 3-27-2020
+//  Description: This program uses bitwise operators
+//  for shift, or, and and rotate.  The program only
+//  uses two of these (shift/and) along with the load
+//  AH instruction which copies the EFLAGS register
+//  including the carry over flag in bit poistion 0.
+//  The  I/O is just to input an 8-bit integer and 
+//  print to stdout.put from the stdlib.
+
+
+program PrintInBinary;
+#include( "stdlib.hhf" );
+static
+number : int8;
+
+begin PrintInBinary;
+
+stdout.newln(); // nicely format with an ending newline
+stdin.get(number);
+stdout.put(number, " is ");
+
+shl(1,number);
+lahf();
+and(1,AH);
+stdout.puti8(AH);
+clc();
+
+shl(1,number);
+lahf();
+and(1,AH);
+stdout.puti8(AH);
+clc();
+
+shl(1,number);
+lahf();
+and(1,AH);
+stdout.puti8(AH);
+clc();
+
+shl(1,number);
+lahf();
+and(1,AH);
+stdout.puti8(AH);
+clc();
+
+shl(1,number);
+lahf();
+and(1,AH);
+stdout.puti8(AH);
+clc();
+
+shl(1,number);
+lahf();
+and(1,AH);
+stdout.puti8(AH);
+clc();
+
+shl(1,number);
+lahf();
+and(1,AH);
+stdout.puti8(AH);
+clc();
+
+shl(1,number);
+lahf();
+and(1,AH);
+stdout.puti8(AH);
+clc();
+
+end PrintInBinary;

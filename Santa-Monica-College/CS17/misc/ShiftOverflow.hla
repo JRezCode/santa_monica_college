@@ -1,0 +1,26 @@
+program ShiftLimitTest;
+#include ("stdlib.hhf");
+static
+unsignednum: uns32;
+
+begin ShiftLimitTest;
+
+stdin.getu32();		//get decimal number from user
+
+mov(EAX,unsignednum);
+mov(0,EBX);
+mov(unsignednum,EBX);
+
+//Shift left and right on an unsigned data type
+stdout.put("About to apply shift to number");
+
+shl(2,EBX);
+if(@c) then
+	stdout.newln();
+	stdout.put("There's been a overflow");
+else
+	mov(EBX,unsignednum);
+	stdout.newln();
+	stdout.putu32(unsignednum);
+endif;
+end ShiftLimitTest;

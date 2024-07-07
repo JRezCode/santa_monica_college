@@ -1,0 +1,81 @@
+//  File: RecusriveMultx.hla
+//  Program Author:  Jonathan Reznik, 1654919
+//  Course: CS17
+//  Date: 5-3-2020
+//  Description: A recursive function that returns a value
+//  in EAX for the product of two terms.  The multiplication
+//  is performed with recursive calls of addition.  
+//
+
+ 
+program RecursiveProductofTwoTerms;
+#include( "stdlib.hhf" );
+
+static
+  iDataValue1 : uns32 := 0;
+  iDataValue2 : uns32 := 0;
+
+////////////////////////////
+// Function recursiveMultiplication
+////////////////////////////
+procedure recursiveMultiplication( i : uns32; j : uns32 ); @nodisplay; @noframe;
+static
+	returnAddress : dword;
+
+begin recursiveMultiplication;
+// this procedure returns its answer in EAX, and uses EBX for the purpose of
+// testing for 0 values. No other registers are used, and no registers are preserved.
+	////////////////// get params from stack ///////////////////
+	pop( returnAddress );
+	pop( i );
+	pop( j );
+	push( returnAddress );
+
+	
+	mov(i,EBX);
+	and(j,EBX);					
+	add(j,EBX);
+	test($FFFF,EBX);			
+	jz ExitSequence;			//if 'a' or 'b' is 0 return nill in EAX
+
+	add(i,EAX);				//add i to the partial result in EAX
+	
+	cmp( j, 1 );				
+	jnl RecurseATimesB;			//if 'b' is 1 (base case), else recursion happens
+	jmp ExitSequence;
+
+	RecurseATimesB:
+		dec(j);				//b-1
+		// calling recursiveMultiplication(a,b-1);
+		push( j );
+		push( i );
+		call recursiveMultiplication;
+		jmp ExitSequence;
+
+	ExitSequence:
+	ret();
+
+end recursiveMultiplication;
+
+
+////////// main program //////////////
+begin RecursiveProductofTwoTerms;
+
+  stdout.put( "Gimme a: " );
+  stdin.get( iDataValue1 );
+  stdout.put( "Gimme b: " );
+  stdin.get( iDataValue2 );
+  push( iDataValue2 );
+  push( iDataValue1 );
+  mov(0,EAX);
+  mov(0,EBX);
+  call recursiveMultiplication;
+  // this function leaves the answer in EAX
+  //cmp(EAX, 1);	//check for overflow
+  stdout.put("A*B = ");
+  stdout.putu32(EAX);
+  stdout.newln();
+
+  EndProgram:
+
+end RecursiveProductofTwoTerms;

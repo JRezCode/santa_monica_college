@@ -1,0 +1,77 @@
+// File: xpatterndisplay.hla
+// Author: Jonathan Reznik, 1654919
+// Description: Quiz 1 Program 2
+ 
+program ArrowPattern;
+#include( "stdlib.hhf" );
+
+static
+n8: int8;
+
+begin ArrowPattern;
+programBegin:
+stdout.put("Height: ");
+
+stdin.get(n8);
+
+cmp(n8,0);
+jnl skipAhead;
+stdout.put("Try again no negative values", nl);
+jmp programBegin;
+
+skipAhead:
+//begin pattern processing for top-half
+
+forLpTop:
+mov(1,DL);
+forLpTerminationTop:
+cmp(DL,n8);
+jnle forLpDoneTop;
+forLpBodyTop:
+	nestedforLpTop:
+	mov(1,CL);
+	nestedforLpTermTop:
+	cmp(CL,DL);
+	jnle nestedforLpDoneTop;
+	nestedforLpBodyTop:
+	stdout.put("X");
+	nestedforLpIncTop:
+	inc(CL);
+	jmp nestedforLpTermTop;
+	nestedforLpDoneTop:
+stdout.newln();
+forLpIncrementTop:
+inc(DL);
+jmp forLpTerminationTop;
+forLpDoneTop:
+
+//begin pattern processing for bottom-half
+
+forLpBot:
+sub(1,n8);
+mov(n8,DL);
+forLpTerminationBot:
+cmp(DL,1);
+jnge forLpDoneBot;
+forLpBodyBot:
+	nestedforLpBot:
+	mov(1,CL);
+	nestedforLpTermBot:
+	cmp(CL,DL);
+	jnle nestedforLpDoneBot;
+	nestedforLpBodyBot:
+	stdout.put("X");
+	nestedforLpIncBot:
+	inc(CL);
+	jmp nestedforLpTermBot;
+	nestedforLpDoneBot:
+stdout.newln();
+forLpIncrementBot:
+dec(DL);
+jmp forLpTerminationBot;
+forLpDoneBot:
+
+programClose:
+stdout.put("Thank you, bye", nl);
+
+end ArrowPattern;

@@ -1,0 +1,41 @@
+program CountSetBits;
+#include( "stdlib.hhf" );
+
+static
+iDataValue : int32 := 0; // the value to inspect
+
+begin CountSetBits;
+
+// Prompt the user for an initial value and store in BX/CX
+stdout.put( "Please provide a value to inspect: " );
+stdin.get( iDataValue );
+mov( iDataValue, EBX );
+mov( iDataValue, ECX );
+
+mov( 1, EDI );   	//bit string test other registers
+mov( 0, DH );		//we'll count set bits in DH
+
+whileLoop:
+whileLoopBody:
+test( EDI, EBX ); 	//performs AND operation for EFLAGS results only
+setnz( AL );
+add( AL, DH );		//count is increased for a set bit
+shl( 1, EDI );
+jnc whileLoopBody;	//loop if no carry flag
+whileLoopTerminate:
+
+//Output library routines to show results
+stdout.put( "The value ", iDataValue, " = $", ECX, " has " );
+stdout.puti8( DH );
+stdout.put( " set bit" );
+// if DH != 1: print an additional character
+ifDHequalsOne:
+cmp( DH, 1 ); 	// is DH equal to 1?
+je endifDHequalsOne; // if so, skip over next line
+stdout.put( "s" );
+
+endifDHequalsOne:
+
+stdout.newln();
+
+end CountSetBits;

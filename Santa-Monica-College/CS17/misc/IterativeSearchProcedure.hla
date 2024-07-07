@@ -1,0 +1,135 @@
+//  File: IterativeSearchProcedure.hla
+//  Program Author:  Jonathan Reznik, 1654919
+//  Course: CS17
+//  Date: 5-3-2020
+//  Description: This program calls a simple search function
+//  to determine the largest of three passed arguments, taken
+//  as input by the user at runtime. These three arguments, 
+//  initially stored into 16-bit integer data types in memory
+//  are padded with an additional 16-bits to manage alignment
+//  of the stack memory segment.  
+//  
+//  Other Notes: To save the state of the registers a combination
+//  of static variable memory and stack was used.
+
+program FindLargestParameter;
+#include( "stdlib.hhf" );
+static
+  iDataValue1 : int16 := 0;
+  iDataValue2 : int16 := 0;
+  iDataValue3 : int16 := 0;
+  pad : int16 := 0;
+
+////////////////////////////
+// Function largestfinder
+////////////////////////////
+procedure largestfinder( x: int16; y: int16; z: int16 ); @nodisplay; @noframe; 
+static
+	returnAddress : dword;
+	//pad: int16;
+	regvalue1 : word;
+	regvalue2 : word;
+	regvalue3 : word;
+
+begin largestfinder;
+// Registers used: AL, BX, CX, DX
+// this procedure returns a boolean value in AL
+// registers BX, CX, and DX store parameters for comparison, states of these registers
+// are returned to their original states.
+	///////////////// store the registers to be used /////////////////
+	mov(BX,regvalue1);
+	mov(CX,regvalue2);
+	mov(DX,regvalue3);
+	////////////////// get params from stack ///////////////////
+	pop( returnAddress );
+	pop( pad );			//padding - stack must be 32-bit aligned
+	pop( DX );		//z
+	pop( pad );			//padding - stack must be 32-bit aligned
+	pop( CX );		//y
+	pop( pad );			//padding - stack must be 32-bit aligned
+	pop( BX );		//x
+	//////////////// save state ////////////
+	push( returnAddress );
+	push(regvalue3);
+	push(regvalue2);
+	push(regvalue1);
+
+
+	BeginXvsZ:
+	cmp( BX, DX);		//comparing x and z
+	jnge MaybeYvsZ;
+	je MaybeAllTrue;		
+	cmp( BX, CX);		//comparing x and y
+	jnge FoundY;		
+	stdout.put("The largest value is ");	// x > {y,z}
+	stdout.puti16(BX);	
+	stdout.newln();
+	mov(0, EAX);		//return 0
+	jmp ExitSequence;
+
+	MaybeYvsZ:		
+	cmp( CX, DX);		//comparing y with z, after eliminating x
+	jnle FoundY;
+	stdout.put("The largest value is ");	// z > {x,y}
+	stdout.puti16(DX);
+	stdout.newln();
+	mov(0, EAX);		//return 0
+	jmp ExitSequence;
+
+	FoundY:
+	stdout.put("The largest value is ");	// y > {x,z}
+	stdout.puti16(CX);
+	stdout.newln();
+	mov(0, EAX);		//return 0
+	jmp ExitSequence;
+
+	MaybeAllTrue:
+	cmp(CX,DX);
+	jne MaybeYvsZ;
+	stdout.put("All largest value is ");	// x = y = z
+	stdout.puti16(CX);
+	stdout.newln();
+	mov(1,EAX);		//return 1
+
+	ExitSequence:
+	pop(BX);
+	pop(CX);
+	pop(DX);
+	ret();
+	
+end largestfinder;
+
+
+////////// main program //////////////
+begin FindLargestParameter;
+
+  stdout.put( "Feed me X: " );
+  stdin.get( iDataValue1 );
+  stdout.put( "Feed me Y: " );
+  stdin.get( iDataValue2 );
+  stdout.put( "Feed me Z: " );
+  stdin.get( iDataValue3 );
+
+  stdout.put( "Initial state of BX, CX, DX...");
+  stdout.put(BX,",",CX,",",DX);
+  stdout.newln();
+  push( iDataValue1 );
+  push( pad );		//padding
+  push( iDataValue2 );
+  push( pad );		//padding
+  push( iDataValue3 );
+  push( pad );		//padding
+  call largestfinder;
+  
+  // this function leaves the answer in EAX
+  stdout.put("AL = ");
+  stdout.put(AL);
+  stdout.newln();
+  stdout.put( "Final state of BX, CX, DX...");
+  stdout.put(BX,",",CX,",",DX);
+  stdout.newln();
+
+  EndProgram:
+
+end FindLargestParameter;
+

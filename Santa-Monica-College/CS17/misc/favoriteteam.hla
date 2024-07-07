@@ -1,0 +1,23 @@
+//  File: favoriteteam.hla
+//  Program Author:  Jonathan Reznik, 1654919
+//  Course: CS17
+//  Date: 3-22-2020
+//  Description: This is a short program that prints
+//  to the standard output (Console) with the text.
+//  I/O involved is just stdout.put from the stdlib.
+
+
+program LakersOut;
+#include( "stdlib.hhf" );
+static
+begin LakersOut;
+
+stdout.newln(); // nicely format with an ending newline
+stdout.put( "L     AAAAA  K   K  EEEE  RRRR   SSSS", nl );
+stdout.put( "L     A   A  K  K   E     R   R  S   ", nl );
+stdout.put( "L     AAAAA  K K    EEE   RRRR   SSSS", nl );
+stdout.put( "L     A   A  K  K   E     R   R     S", nl );
+stdout.put( "LLLL  A   A  K   K  EEEE  R   R  SSSS", nl );
+stdout.newln(); // nicely format with an ending newline
+
+end LakersOut;

@@ -1,0 +1,35 @@
+program powersOfThree;
+#include( "stdlib.hhf" );
+
+static
+iPwrOf3: int32 := 3; 	// 3^1 = 3
+iExponent: int32 := 1; 	// exponent at the start
+
+begin powersOfThree;
+
+// Print a start up banner.
+stdout.put( "Powers of 3: ", nl, nl );
+
+// This work is going to be repeated a bunch of times...
+// Soon, we'll learn how to loop in our code...
+forLoop:
+//create a counter
+mov(3,DL);
+forLoopBody:
+stdout.put( "3**(", iExponent:1, ") = ", iPwrOf3:2, nl );
+inc(iExponent);
+mov( 0, eax );
+add( iPwrOf3, EAX );
+add( iPwrOf3, EAX );
+add( iPwrOf3, EAX);
+mov( eax, iPwrOf3);
+dec(DL);
+jns forLoopBody;
+forLoopEnd:
+
+// Increment the exponent
+//mov( iExponent, ebx );
+//add( 1, ebx );
+//mov( ebx, iExponent );
+
+end powersOfThree;

@@ -1,0 +1,90 @@
+// File:RecursiveMult.hla
+// Author: Jonathan Reznik, ID_1654919
+//
+// Description: A recursive function that returns its
+// value in EAX.  The function is used to do multiplication
+// by making recursive calls of addition and storing the
+// value in another register  
+// required a choice about when to first increment
+// the 
+//
+//
+//
+//
+
+ 
+program RecursiveProductofTwoTerms;
+#include( "stdlib.hhf" );
+
+static
+  iDataValue1 : uns32 := 0;
+  iDataValue2 : uns32 := 0;
+
+////////////////////////////
+// Function recursiveMultiplication
+////////////////////////////
+procedure recursiveMultiplication( i : uns32; j : uns32 ); @nodisplay; @noframe;
+static
+	returnAddress : dword;
+
+begin recursiveMultiplication;
+// this procedure returns its answer in EAX, and uses EBX for the purpose of
+// testing for 0 values. No other registers are used.
+	////////////////// get params from stack ///////////////////
+	pop( returnAddress );
+	pop( i );
+	pop( j );
+	push( returnAddress );
+
+	mov(i,EBX);
+	and(j,EBX);					
+	add(j,EBX);
+	test($FFFF,EBX);			
+	jz ExitSequence;			//if 'a' or 'b' is 0 return nill in EAX
+
+	cmp( j, 1 );				
+	jnl RecurseATimesB;			//if 'b' is 1 (base case) it returns 'a', else recursion happens
+	cmp(EAX,i);				//reached the base case, still need to check EAX against i
+	jnl ExitSequence;			
+	mov(i,EAX);				//accounts for base case happening before recursive call and add(i,EAX)
+	jmp ExitSequence;
+
+	RecurseATimesB:
+		add(i,EAX);			//store the partial result in EAX
+		dec(j);				//b-1
+
+		// calling recursiveMultiplication(a,b-1);
+		push( j );
+		push( i );
+		call recursiveMultiplication;
+		jmp ExitSequence;
+
+
+
+	ExitSequence:
+	ret();
+
+end recursiveMultiplication;
+
+
+////////// main program //////////////
+begin RecursiveProductofTwoTerms;
+
+  stdout.put( "Gimme a: " );
+  stdin.get( iDataValue1 );
+  stdout.put( "Gimme b: " );
+  stdin.get( iDataValue2 );
+  push( iDataValue2 );
+  push( iDataValue1 );
+  mov(0,EAX);
+  mov(0,EBX);
+  call recursiveMultiplication;
+  // this function leaves the answer in EAX
+  //cmp(EAX, 1);	//check for overflow
+  stdout.put("A*B = ");
+  stdout.puti32(EAX);
+  stdout.newln();
+
+  EndProgram:
+
+end RecursiveProductofTwoTerms;

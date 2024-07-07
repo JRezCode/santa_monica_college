@@ -1,0 +1,20 @@
+//Program to test the input of different values into a register
+program StoreIntoRegister;
+#include ("stdlib.hhf");
+
+begin StoreIntoRegister;
+
+stdin.geti32();
+mov(EAX,EBX);		//get decimal number from user
+stdin.flushInput();
+
+
+stdout.put("Just loaded the register with: (Dec)");
+stdout.put(EBX);
+
+
+stdin.get(EBX);
+stdout.put("Just loaded the register with: (Hex)");
+stdout.put(EBX);
+
+end StoreIntoRegister;

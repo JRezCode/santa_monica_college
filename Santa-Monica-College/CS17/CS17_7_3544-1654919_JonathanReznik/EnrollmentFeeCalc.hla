@@ -1,0 +1,141 @@
+//  File: EnrollmentFeeCalc.hla
+//  Program Author:  Jonathan Reznik, 1654919
+//  Course: CS17
+//  Date: 4-12-2020
+//  Description: This is a sample of data unpacking for the
+//  purpose of calculating based on values stored inside of
+//  a single encoded byte. 
+//  I/O: Data is read directly into the EDX register and is
+//  read in as hexadecimal values.  In memory there are two
+//  variables of type int16 for fee calculation purposes.
+//  Other Notes: Program employs a mix of signed and unsigned
+//  comparisons for the conditional jumps, and contains an
+//  example of the switch/case statement using address-of
+//  operators for labels.
+
+  
+program feeCalculator;
+#include( "stdlib.hhf" );
+
+readonly
+JmpTbl: dword[4] := [&FallSemester, &WinterSemester, &SpringSemester, &SummerSemester];
+
+static
+perUnitFee : int16;	//stores per unit fee based upon residence status (in/out of state)
+feesTotal : int16;	//store for total fees
+
+begin feeCalculator;
+
+RepeatSection:
+stdout.newln();
+mov(0,feesTotal);
+mov(0,EDX);
+stdout.put("Feed me(2 hex digits with the bits sseeeeri): ");
+stdin.get( EDX );
+
+mov(EDX,EBX);
+and(%0011_1100,EBX);
+cmp(EBX,0);		//catches illegal values of input
+je CatchError;
+
+
+stdout.newln();
+
+//Unpacking the packed data field
+//Unpack Semester, switch-case control structure
+shl(2,EDX);	//shifts EXD bits 2 to left
+mov(0,ECX);
+mov(DH,CL);
+
+//switch-case start here
+cmp(CL,0);	
+jb EndCase;
+cmp(CL,3);
+ja EndCase;
+jmp (JmpTbl[ECX*4]);
+
+FallSemester:
+//Case 1
+stdout.put("Fall Semester");
+add(53,feesTotal);
+jmp EndCase;
+WinterSemester:
+//Case 2
+stdout.put("Winter Semester");
+add(50,feesTotal);
+jmp EndCase;
+SpringSemester:
+//Case 3
+stdout.put("Spring Semester");
+add(53,feesTotal);
+jmp EndCase;
+SummerSemester:
+//Case 4
+add(50,feesTotal);
+stdout.put("Summer Semester");
+
+EndCase:
+//Switch-case ends, add a line break for nice output
+stdout.newln();
+
+//Unpack number of units
+mov(0,DH);
+shl(4,EDX);		//shifts EDX bits 4 to left
+stdout.puti8(DH);	//print units to console
+stdout.put(" unit");
+cmp(DH,1);
+jng SkipPlural;
+stdout.put("s");
+SkipPlural:
+stdout.newln();
+
+//Unpacking Residence status
+DoIf:
+//is now in bit 7 of DL, compare unsigned to %1000_0000
+cmp(DL,$80);
+jnb InStateResident;
+stdout.put("Non-Resident");
+mov(370,perUnitFee);	//set Non-resident per unit fee
+jmp EndOfIf;
+InStateResident:
+stdout.put("CA Resident");
+mov(46,perUnitFee);	//set CA Resident per unit fee
+EndOfIf:
+//End if structure, add a line break for nice console output
+stdout.newln();
+
+//Unpacking ID-Card
+shl(2,DL);		//shift the DL bits 2 times
+jnc SkipFee;
+stdout.put("ID Card");
+stdout.newln();
+jmp PrintFees;
+SkipFee:
+stdout.put("No ID Card");
+sub(13,feesTotal);
+stdout.newln();
+
+PrintFees:
+//Store the per unit fee into a register for calculation
+mov(0,CX);
+mov(perUnitFee,CX);
+
+WhileLpTermination:
+//Loop through with decrement of DH to add the fees up
+cmp(DH,0);
+je WhileLpDone;
+WhileLpBody:
+add(CX,feesTotal);
+dec(DH);
+jmp WhileLpTermination;
+WhileLpDone:
+stdout.put("Total Fees = $ ");
+stdout.puti16(feesTotal);
+
+jmp RepeatSection;
+
+CatchError:
+stdout.put("Sorry Charlie, badly formed data!");
+jmp RepeatSection;
+
+end feeCalculator;

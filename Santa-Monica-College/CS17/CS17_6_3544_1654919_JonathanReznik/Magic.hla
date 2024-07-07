@@ -1,0 +1,83 @@
+//  File: Magic.hla
+//  Program Author:  Jonathan Reznik, 1654919
+//  Course: CS17
+//  Date: 4-02-2020
+//  Description: The program is a guessing game for the magic
+//  number value.  Three variables store the magic number value
+//  the value of a current guess, and the count of guesses tried
+//  which are no to exceed 5 attempts.
+//  I/O: Libraries for stdout and stdin were used to read in
+//  values for the uns8 and int8 types, and store in memory.
+//  Also labels PrintHigher and PrintLower were used to control
+//  program flow by outputting the correct conditional print
+//  statement.
+
+program numberGame;
+#include( "stdlib.hhf" );
+
+static
+iDataValue : uns8; 		// the value for input into memory
+iGuessedValue : uns8;		// the value for second input into memory
+iNumberOfGuesses: int8;		// the value to count number of guesses
+
+begin numberGame;
+
+// Prompt the user for the magic value
+stdout.put( "Gimme the magic number: ");
+stdin.get( iDataValue );
+mov(0,EBX);
+mov(iDataValue,BL);
+
+// Prompt for a guess
+stdout.put( "Gimme a starting number: ");
+
+//Begin do while loop
+DoWhileLp:
+DoWhileLpBody:			// begin loop body here
+inc(iNumberOfGuesses);
+stdin.get (iGuessedValue);	// read in guess from user
+DoWhileLpTermination:
+cmp(iGuessedValue, BL);		// compares for the win case
+je GameOverWin;		
+cmp(iNumberOfGuesses,5);	// compares for guesses remaining
+jnl DoWhileLpDone;
+cmp(iGuessedValue, BL);		// compares for the help given High/Low
+jl PrintHigher;
+jg PrintLower;
+jmp DoWhileLpBody;		// repeat loop body
+
+PrintHigher:
+stdout.put("Higher");
+cmp(iNumberOfGuesses,4);	// compare for reminder of last attempt
+je PrintLastTry;
+stdout.newln();
+stdout.put( "Next: ");
+jmp DoWhileLpBody;		// goto loop body after printing hint
+
+PrintLower:
+stdout.put("Lower");
+cmp(iNumberOfGuesses,4);	// compare for reminder of last attempt
+je PrintLastTry;
+stdout.newln();
+stdout.put( "Next: ");
+jmp DoWhileLpBody;		// goto loop body after printing hint
+
+PrintLastTry:
+stdout.newln();
+stdout.put("Last Try!");
+stdout.newln();
+stdout.put( "Next: ");
+jmp DoWhileLpBody;		// goto loop body after printing last attempt
+
+
+DoWhileLpDone:			//loop ends
+stdout.put("Sorry, You Lost the Game!");
+jmp Quit;			//program end
+
+GameOverWin:
+stdout.put("You Won the Game!");
+jmp Quit;			//program end
+
+Quit:
+
+end numberGame;
